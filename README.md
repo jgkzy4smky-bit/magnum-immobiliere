@@ -1,2 +1,1995 @@
 # magnum-immobiliere
 Site officiel Magnum Immobilière
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnum Immobilière | Immobilier de Luxe & Prestige</title>
+    <!-- Polices Google Fonts Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome pour les icônes de précision -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- GSAP & ScrollTrigger pour des animations d'une fluidité absolue -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* ==========================================
+           VARIABLES GLOBALES & DESIGN SYSTEM LUXE
+           ========================================== */
+        :root {
+            --bg-deep: #050505;
+            --bg-surface: #0a0a0a;
+            --bg-card: #121212;
+            --bg-card-hover: #181818;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-gold: rgba(212, 175, 55, 0.3);
+            
+            --text-primary: #ffffff;
+            --text-secondary: #999999;
+            --text-muted: #666666;
+            
+            --accent: #D4AF37;
+            --accent-glow: rgba(212, 175, 55, 0.15);
+            
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-art: 'Cinzel', serif;
+
+            /* Marges dynamiques responsive (Desktop par défaut 160px) */
+            --side-margin: 160px;
+            --section-spacing: 180px;
+        }
+
+        @media (max-width: 1440px) {
+            :root { --side-margin: 100px; --section-spacing: 150px; }
+        }
+        @media (max-width: 1024px) {
+            :root { --side-margin: 56px; --section-spacing: 120px; }
+        }
+        @media (max-width: 768px) {
+            :root { --side-margin: 24px; --section-spacing: 90px; }
+        }
+
+        /* RESET & BASE */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            selection-background-color: var(--accent);
+            selection-color: var(--bg-deep);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* UTILS & CLASSES COMMUNES */
+        .container-fluid {
+            width: 100%;
+            padding-left: var(--side-margin);
+            padding-right: var(--side-margin);
+        }
+
+        .section-padding {
+            padding-top: var(--section-spacing);
+            padding-bottom: var(--section-spacing);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-art);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .art-font {
+            font-family: var(--font-art);
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .btn-magnum {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 20px 36px;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            border-radius: 0px;
+        }
+
+        .btn-magnum::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--text-primary);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 0;
+        }
+
+        .btn-magnum span {
+            position: relative;
+            z-index: 1;
+            transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-magnum i {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease, color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-magnum:hover::before {
+            transform: translateX(100%);
+        }
+
+        .btn-magnum:hover {
+            border-color: var(--text-primary);
+            color: var(--bg-deep);
+        }
+
+        .btn-magnum:hover span, .btn-magnum:hover i {
+            color: var(--bg-deep);
+        }
+
+        .btn-magnum:hover i {
+            transform: translateX(5px);
+        }
+
+        .btn-magnum-gold {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-deep);
+        }
+        .btn-magnum-gold::before {
+            background: var(--text-primary);
+        }
+        .btn-magnum-gold:hover {
+            border-color: var(--text-primary);
+        }
+
+        /* ==========================================
+           NAVIGATION ULTRA HAUT DE GAMME (APPLE STYLE)
+           ========================================== */
+        header {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - (var(--side-margin) * 2));
+            max-width: 1500px;
+            z-index: 1000;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 18px 36px;
+            border-radius: 0px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            transition: all 0.4s ease;
+        }
+
+        .nav-logo {
+            font-family: var(--font-art);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 0.15em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .nav-link i {
+            font-size: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Dropdown pour "Programme neuf" */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(15px);
+            background: rgba(12, 12, 12, 0.95);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border-subtle);
+            min-width: 240px;
+            padding: 16px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            z-index: 1010;
+        }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(8px);
+        }
+
+        .nav-item.dropdown:hover .nav-link i {
+            transform: rotate(180deg);
+            color: var(--accent);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 24px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(212, 175, 55, 0.08);
+            color: var(--accent);
+            padding-left: 28px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-cta {
+            font-size: 12px;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: var(--bg-deep);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-cta:hover {
+            background: var(--text-primary);
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           HERO SECTION SPECTACULAIRE
+           ========================================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 80px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+            transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: brightness(0.7) contrast(1.1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.4) 50%, rgba(5,5,5,0.2) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .hero-title-wrapper h1 {
+            font-size: clamp(40px, 6vw, 96px);
+            line-height: 0.95;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: heroReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .hero-title-wrapper h1 span {
+            font-family: var(--font-art);
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        .hero-stats-quick {
+            display: flex;
+            gap: 48px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+        }
+
+        .hero-stat-item .number {
+            font-family: var(--font-art);
+            font-size: 36px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .hero-stat-item .label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 4px;
+        }
+
+        @keyframes heroReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==========================================
+           SECTION: PRÉSENTATION DE MAGNUM IMMOBILIÈRE
+           ========================================== */
+        .presentation-section {
+            position: relative;
+        }
+
+        .pres-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .pres-text h2 {
+            font-size: clamp(32px, 4vw, 56px);
+            line-height: 1.1;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .pres-text p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .pres-quote {
+            border-left: 2px solid var(--accent);
+            padding-left: 24px;
+            margin: 40px 0;
+            font-style: italic;
+            font-family: var(--font-art);
+            font-size: 18px;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .pres-image-wrapper {
+            position: relative;
+            height: 650px;
+            overflow: hidden;
+            border-radius: 0px;
+        }
+
+        .pres-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .pres-image-wrapper:hover img {
+            transform: scale(1.04);
+        }
+
+        /* ==========================================
+           SECTION: NOS EXPERTISES
+           ========================================== */
+        .expertises-section {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .section-header p {
+            max-width: 450px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .expertises-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .expertise-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 48px 40px;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-gold);
+            background: var(--bg-card-hover);
+        }
+
+        .expertise-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .expertise-icon {
+            font-size: 32px;
+            color: var(--accent);
+            margin-bottom: 32px;
+        }
+
+        .expertise-card h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .expertise-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ==========================================
+           SECTIONS DÉDIÉES (RÉSIDENCE, APP, MAISON)
+           ========================================== */
+        .catalog-section {
+            position: relative;
+        }
+
+        .property-filter-tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 20px;
+        }
+
+        .filter-tab {
+            background: none;
+            border: none;
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .filter-tab.active, .filter-tab:hover {
+            color: var(--text-primary);
+        }
+
+        .filter-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -21px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+        }
+
+        .property-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .property-card:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-10px);
+        }
+
+        .property-image-box {
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+        }
+
+        .property-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .property-card:hover .property-image-box img {
+            transform: scale(1.06);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            background: rgba(5,5,5,0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-subtle);
+            padding: 8px 16px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-primary);
+            z-index: 2;
+        }
+
+        .property-info {
+            padding: 40px;
+        }
+
+        .property-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .property-location {
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+        }
+
+        .property-price {
+            font-family: var(--font-art);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .property-card h3 {
+            font-size: 26px;
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+
+        .property-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .property-details-list {
+            display: flex;
+            gap: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .property-details-list span i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
+
+        /* ==========================================
+           SECTION: BIENS À LA UNE (SPOTLIGHT)
+           ========================================== */
+        .spotlight-section {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .spotlight-wrapper {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .spotlight-gallery {
+            position: relative;
+            height: 600px;
+        }
+
+        .spotlight-main-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .spotlight-floating-img {
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 280px;
+            height: 340px;
+            object-fit: cover;
+            border: 4px solid var(--bg-surface);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.5);
+        }
+
+        .spotlight-content h2 {
+            font-size: clamp(32px, 4vw, 48px);
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .spotlight-content p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        /* ==========================================
+           SECTION: POURQUOI NOUS CHOISIR & ENGAGEMENTS
+           ========================================== */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .why-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 40px 32px;
+            transition: all 0.4s ease;
+        }
+
+        .why-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .why-number {
+            font-family: var(--font-art);
+            font-size: 40px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+
+        .why-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .why-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           SECTION: STATISTIQUES
+           ========================================== */
+        .stats-section {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 100px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-box .stat-val {
+            font-family: var(--font-art);
+            font-size: clamp(48px, 6vw, 72px);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .stat-box .stat-val span {
+            color: var(--accent);
+        }
+
+        .stat-box .stat-lbl {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
+        }
+
+        /* ==========================================
+           SECTION: TÉMOIGNAGES
+           ========================================== */
+        .testimonials-slider {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 48px;
+            position: relative;
+        }
+
+        .testimonial-card i.fa-quote-left {
+            font-size: 32px;
+            color: var(--accent);
+            opacity: 0.3;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 32px;
+            font-family: var(--font-art);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 24px;
+        }
+
+        .author-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            font-family: var(--font-main);
+        }
+
+        .author-info p {
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 4px;
+        }
+
+        /* ==========================================
+           SECTION: NOTRE MÉTHODE
+           ========================================== */
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .method-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 48px 40px;
+            position: relative;
+        }
+
+        .method-step-num {
+            font-family: var(--font-art);
+            font-size: 14px;
+            color: var(--accent);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .method-step h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+
+        .method-step p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ==========================================
+           SECTION: INVESTISSEURS & LOCAUX PRO
+           ========================================== */
+        .b2b-section {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .b2b-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+        }
+
+        .b2b-card {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-subtle);
+            padding: 60px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .b2b-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .b2b-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        /* ==========================================
+           SECTION: FAQ
+           ========================================== */
+        .faq-container {
+            max-width: 900px;
+            margin: 60px auto 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-family: var(--font-art);
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-question i {
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+            padding-top: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding-top: 16px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(45deg);
+            color: var(--accent);
+        }
+
+        /* ==========================================
+           SECTION: CONTACT & FORMULAIRE
+           ========================================== */
+        .contact-section {
+            position: relative;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: flex-start;
+        }
+
+        .contact-info h2 {
+            font-size: clamp(36px, 4vw, 56px);
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .contact-info p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .contact-details-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .contact-detail-item i {
+            font-size: 18px;
+            color: var(--accent);
+            width: 30px;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 60px;
+        }
+
+        .form-group {
+            margin-bottom: 32px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            background: var(--bg-deep);
+            border: 1px solid var(--border-subtle);
+            padding: 16px 20px;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border-radius: 0px;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .form-textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        /* ==========================================
+           FOOTER TRÈS COMPLET
+           ========================================== */
+        footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            padding: 120px 0 60px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .footer-col h3 {
+            font-family: var(--font-art);
+            font-size: 20px;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            max-width: 350px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 40px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            color: var(--text-secondary);
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+        }
+
+        /* ==========================================
+           RESPONSIVE DESIGN ADAPTATIF
+           ========================================== */
+        @media (max-width: 1200px) {
+            .expertises-grid, .why-us-grid, .stats-grid, .method-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .pres-grid, .spotlight-wrapper, .contact-grid, .b2b-grid, .properties-grid, .testimonials-slider {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .nav-links, .nav-actions .nav-cta {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+            .hero-stats-quick {
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .expertises-grid, .why-us-grid, .stats-grid, .method-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-form {
+                padding: 30px;
+            }
+            .b2b-card {
+                padding: 30px;
+            }
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg-deep);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 32px;
+            cursor: pointer;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .mobile-nav-links a {
+            font-family: var(--font-art);
+            font-size: 24px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+       NAVIGATION PRINCIPALE
+       ========================================== -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">MAGNUM <span>IMMOBILIÈRE</span></a>
+            <ul class="nav-links">
+                <li class="nav-item dropdown">
+                    <a href="#programmes" class="nav-link">Programme Neuf <i class="fa-solid fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="#residences" class="dropdown-item">Résidence</a>
+                        <a href="#appartements" class="dropdown-item">Appartement</a>
+                        <a href="#maisons" class="dropdown-item">Maison</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#locaux" class="nav-link">Locaux Professionnels</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#investisseurs" class="nav-link">Investisseurs</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#apropos" class="nav-link">À propos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#contact" class="nav-cta btn-magnum-gold">Prendre Rendez-vous</a>
+                <button class="menu-toggle" id="menuToggleBtn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="menuCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+        <ul class="mobile-nav-links">
+            <li><a href="#residences" class="mobile-link">Résidences</a></li>
+            <li><a href="#appartements" class="mobile-link">Appartements</a></li>
+            <li><a href="#maisons" class="mobile-link">Maisons</a></li>
+            <li><a href="#locaux" class="mobile-link">Locaux Professionnels</a></li>
+            <li><a href="#investisseurs" class="mobile-link">Investisseurs</a></li>
+            <li><a href="#apropos" class="mobile-link">À propos</a></li>
+            <li><a href="#contact" class="mobile-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- ==========================================
+       HERO SECTION
+       ========================================== -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=90" alt="Immobilier de Luxe Magnum">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container-fluid">
+            <div class="hero-content">
+                <div class="hero-title-wrapper">
+                    <h1>L'Art de l'<span class="art-font">Exception</span><br>Immobilier de Prestige</h1>
+                    <p class="hero-subtitle">Magnum Immobilière redéfinit les standards de l'habitat d'élite à travers des propriétés d'architecture rare et des emplacements d'une exclusivité absolue.</p>
+                </div>
+                <div class="hero-stats-quick">
+                    <div class="hero-stat-item">
+                        <div class="number">1.2B€</div>
+                        <div class="label">Transactions</div>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="number">98.4%</div>
+                        <div class="label">Satisfaction</div>
+                    </div>
+                    <div class="hero-stat-item">
+                        <div class="number">15+</div>
+                        <div class="label">Années d'Excellence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       SECTION: PRÉSENTATION DE MAGNUM IMMOBILIÈRE
+       ========================================== -->
+    <section class="presentation-section section-padding" id="apropos">
+        <div class="container-fluid">
+            <div class="pres-grid">
+                <div class="pres-text">
+                    <span class="art-font" style="font-size: 16px; letter-spacing: 0.2em; display: block; margin-bottom: 16px;">NOTRE PHILOSOPHIE</span>
+                    <h2>Une vision singulière du luxe immobilier</h2>
+                    <p>Fondée sur des principes d'intégrité absolue, de discrétion et d'exigence architecturale, Magnum Immobilière accompagne une clientèle internationale exigeante dans l'acquisition et la gestion de patrimoines d'exception.</p>
+                    <p>Chaque bien de notre catalogue fait l'objet d'une sélection rigoureuse, répondant à des critères stricts d'emplacement, de noblesse des matériaux et de potentiel patrimonial.</p>
+                    <div class="pres-quote">
+                        "L'architecture de luxe n'est pas seulement une question de volume, c'est l'art de créer des émotions durables à travers l'espace."
+                    </div>
+                    <a href="#contact" class="btn-magnum"><span>Découvrir nos services</span> <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="pres-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85" alt="Intérieur de Luxe Magnum">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       SECTION: NOS EXPERTISES
+       ========================================== -->
+    <section class="expertises-section section-padding">
+        <div class="container-fluid">
+            <div class="section-header">
+                <div>
+                    <span class="art-font" style="font-size: 14px; letter-spacing: 0.2em; display: block; margin-bottom: 12px;">SAVOIR-FAIRE</span>
+                    <h2>Nos Expertises Sur-Mesure</h2>
+                </div>
+                <p>Une maîtrise complète de la chaîne de valeur immobilière pour offrir à nos clients un accompagnement global et hautement personnalisé.</p>
+            </div>
+            <div class="expertises-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon"><i class="fa-solid fa-gem"></i></div>
+                    <h3>Acquisition & Vente</h3>
+                    <p>Transactions confidentielles de biens d'exception, demeures historiques et penthouses avec une visibilité internationale ciblée.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+                    <h3>Architecture & Design</h3>
+                    <p>Collaboration avec les plus grands architectes d'intérieur pour concevoir des espaces de vie uniques et intemporels.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>Conseil en Investissement</h3>
+                    <p>Stratégies patrimoniales avancées, optimisation fiscale et diversification d'actifs immobiliers haut de gamme.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       SECTION: PROGRAMMES NEUFS & RÉSIDENCES
+       ========================================== -->
+    <section class="catalog-section section-padding" id="programmes">
+        <div class="container-fluid">
+            <div class="section-header" id="residences">
+                <div>
+                    <span class="art-font" style="font-size: 14px; letter-spacing: 0.2em; display: block; margin-bottom: 12px;">PORTFOLIO EXCLUSIF</span>
+                    <h2>Résidences & Programmes Neufs</h2>
+                </div>
+                <p>Découvrez nos réalisations architecturales les plus audacieuses, situées dans les enclaves les plus convoitées du monde.</p>
+            </div>
+
+            <!-- Filtres interactifs -->
+            <div class="property-filter-tabs">
+                <button class="filter-tab active" data-filter="all">Tous les biens</button>
+                <button class="filter-tab" data-filter="residence">Résidences</button>
+                <button class="filter-tab" data-filter="appartement">Appartements</button>
+                <button class="filter-tab" data-filter="maison">Maisons</button>
+            </div>
+
+            <!-- Grille de biens -->
+            <div class="properties-grid">
+                <!-- Résidence 1 -->
+                <div class="property-card" data-category="residence" id="appartements">
+                    <div class="property-image-box">
+                        <span class="property-badge">Exclusivité</span>
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=85" alt="Résidence Villa Bel-Air">
+                    </div>
+                    <div class="property-info">
+                        <div class="property-meta">
+                            <span class="property-location"><i class="fa-solid fa-location-dot"></i> Cannes, Côte d'Azur</span>
+                            <span class="property-price">12 850 000 €</span>
+                        </div>
+                        <h3>Villa Bel-Air & Ses Jardins</h3>
+                        <p class="property-desc">Splendide propriété contemporaine dominant la mer Méditerranée, offrant 6 suites somptueuses, une piscine à débordement et un héliport privé.</p>
+                        <div class="property-details-list">
+                            <span><i class="fa-solid fa-ruler-combined"></i> 650 m²</span>
+                            <span><i class="fa-solid fa-bed"></i> 6 Chambres</span>
+                            <span><i class="fa-solid fa-water"></i> Vue Mer Panoramique</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Résidence 2 -->
+                <div class="property-card" data-category="appartement" id="maisons">
+                    <div class="property-image-box">
+                        <span class="property-badge">Nouveauté</span>
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=85" alt="Penthouse Monceau">
+                    </div>
+                    <div class="property-info">
+                        <div class="property-meta">
+                            <span class="property-location"><i class="fa-solid fa-location-dot"></i> Paris 8ème, Triangle d'Or</span>
+                            <span class="property-price">8 900 000 €</span>
+                        </div>
+                        <h3>Penthouse Monceau</h3>
+                        <p class="property-desc">Triplex d'exception au dernier étage d'un immeuble haussmannien entièrement rénové. Rooftop paysagé avec vue imprenable sur la Tour Eiffel.</p>
+                        <div class="property-details-list">
+                            <span><i class="fa-solid fa-ruler-combined"></i> 420 m²</span>
+                            <span><i class="fa-solid fa-bed"></i> 4 Chambres</span>
+                            <span><i class="fa-solid fa-building"></i> Rooftop Privé</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Résidence 3 -->
+                <div class="property-card" data-category="maison">
+                    <div class="property-image-box">
+                        <span class="property-badge">Prestige</span>
+                        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1000&q=85" alt="Chalet Alpine Crown">
+                    </div>
+                    <div class="property-info">
+                        <div class="property-meta">
+                            <span class="property-location"><i class="fa-solid fa-location-dot"></i> Courchevel 1850</span>
+                            <span class="property-price">16 500 000 €</span>
+                        </div>
+                        <h3>Chalet Alpine Crown</h3>
+                        <p class="property-desc">Chef-d'œuvre boisé au pied des pistes. Spa complet, piscine intérieure, cave à vin millésimée et salon de réception cathédrale.</p>
+                        <div class="property-details-list">
+                            <span><i class="fa-solid fa-ruler-combined"></i> 780 m²</span>
+                            <span><i class="fa-solid fa-bed"></i> 7 Suites</span>
+                            <span><i class="fa-solid fa-snowflake"></i> Ski-in / Ski-out</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Résidence 4 -->
+                <div class="property-card" data-category="residence">
+                    <div class="property-image-box">
+                        <span class="property-badge">Rare</span>
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=85" alt="Domaine de Saint-Tropez">
+                    </div>
+                    <div class="property-info">
+                        <div class="property-meta">
+                            <span class="property-location"><i class="fa-solid fa-location-dot"></i> Saint-Tropez, Les Salins</span>
+                            <span class="property-price">21 000 000 €</span>
+                        </div>
+                        <h3>Domaine Les Salins</h3>
+                        <p class="property-desc">Propriété pieds dans l'eau nichée au cœur d'un parc arboré de 2 hectares. Accès direct à une crique confidentielle et court de tennis privé.</p>
+                        <div class="property-details-list">
+                            <span><i class="fa-solid fa-ruler-combined"></i> 950 m²</span>
+                            <span><i class="fa-solid fa-bed"></i> 8 Chambres</span>
+                            <span><i class="fa-solid fa-tree"></i> 2 Hectares de Parc</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       SECTION: BIENS À LA UNE (SPOTLIGHT)
+       ========================================== -->
+    <section class="spotlight-section section-padding">
+        <div class="container-fluid">
+            <div class="spotlight-wrapper">
+                <div class="spotlight-gallery">
+                    <img class="spotlight-main-img" src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1000&q=85" alt="Propriété Spotlight">
+                    <img class="spotlight-floating-img" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=85" alt="Détail Intérieur">
+                </div>
+                <div class="spotlight-content">
+                    <span class="art-font" style="font-size: 14px; letter-spacing: 0.2em; display: block; margin-bottom: 12px;">LE COUP DE CŒUR MAGNUM</span>
+                    <h2>Palazzo di Luce, Genève</h2>
+                    <p>Situé sur les rives paisibles du Lac Léman, ce chef-d'œuvre architectural marie le minimalisme contemporain au raffinement suisse le plus absolu. Vaste domaine sécurisé disposant de son propre port privé.</p>
+                    <p>Chaque espace a été pensé pour maximiser la lumière naturelle et offrir une communion parfaite avec le paysage lacustre et alpin environnant.</p>
+                    <a href="#contact" class="btn-magnum btn-magnum-gold"><span>Demander le dossier privé</span> <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       SECTION: STATISTIQUES
+       ========================================== -->
+    <section class="stats-section">
+        <div class="container-fluid">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-val">1.2<span>B€</span></div>
+                    <div class="stat-lbl">Volume de ventes cumulé</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val">250<span>+</span></div>
+                    <div class="stat-lbl">Biens d'exception vendus</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val">14<span></span></div>
+                    <div class="stat-lbl">Bureaux internationaux</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val">100<span>%</span></div>
+                    <div class="stat-lbl">Confidentialité garantie</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       SECTION: POURQUOI NOUS CHOISIR & ENGAGEMENTS
+       ========================================== -->
+    <section class="section-padding">
+        <div class="container-fluid">
+            <div class="section-header">
+                <div>
+                    <span class="art-font" style="font-size: 14px; letter-spacing: 0.2em; display: block; margin-bottom: 12px;">EXCELLENCE & VALEURS</span>
+                    <h2>Pourquoi Choisir Magnum</h2>
+                </div>
+                <p>Notre réputation repose sur des standards intransigeants et une éthique professionnelle irréprochable.</p>
+            </div>
+            <div class="why-us-grid">
+                <div class="why-card">
+                    <div class="why-number">01</div>
+                    <h3>Discrétion Absolue</h3>
+                    <p>Gestion stricte des dossiers hors-marché (Off-Market) pour protéger la vie privée de nos clients vendeurs et acquéreurs.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-number">02</div>
+                    <h3>Réseau Global</h3>
+                    <p>Connexions privilégiées avec les investisseurs internationaux les plus influents à Londres, New York, Genève et Dubai.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-number">03</div>
+                    <h3>Expertise Juridique</h3>
+                    <p>Accompagnement notarié et fiscal sur-mesure pour sécuriser chaque structure d'acquisition complexe.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-number">04</div>
+                    <h3>Conciergerie Dédiée</h3>
+                    <p>Un service d'intendance disponible 24h/24 pour faciliter votre installation et la gestion de vos propriétés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       SECTION: NOTRE MÉTHODE
+       ========================================== -->
+    <section class="section-padding" style="background: var(--bg-surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+        <div class="container-fluid">
+            <div class="section-header">
+                <div>
+                    <span class="art-font" style="font-size: 14px; letter-spacing: 0.2em; display: block; margin-bottom: 12px;">PROCESSUS</span>
+                    <h2>Notre Méthode d'Accompagnement</h2>
+                </div>
+                <p>Un parcours client fluide, structuré en trois étapes clés pour garantir un succès total.</p>
+            </div>
+            <div class="method-grid">
+                <div class="method-step">
+                    <span class="method-step-num">Étape 01</span>
+                    <h3>Consultation Privée</h3>
+                    <p>Analyse approfondie de vos critères de recherche, de vos attentes esthétiques et de vos objectifs patrimoniaux lors d'un entretien confidentiel.</p>
+                </div>
+                <div class="method-step">
+                    <span class="method-step-num">Étape 02</span>
+                    <h3>Sélection Sur-Mesure</h3>
+                    <p>Présentation d'une shortlist exclusive de biens rares, incluant des opportunités Off-Market inaccessibles au grand public.</p>
+                </div>
+                <div class="method-step">
+                    <span class="method-step-num">Étape 03</span>
+                    <h3>Négociation & Signature</h3>
+                    <p>Pilotage expert des négociations, audits juridiques rigoureux et accompagnement jusqu'à la remise des clés et au-delà.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       SECTION: INVESTISSEURS & LOCAUX PROFESSIONNELS
+       ========================================== -->
+    <section class="b2b-section section-padding" id="locaux">
+        <div class="container-fluid">
+            <div class="section-header" id="investisseurs">
+                <div>
+                    <span class="art-font" style="font-size: 14px; letter-spacing: 0.2em; display: block; margin-bottom: 12px;">B2B & INSTITUTIONNELS</span>
+                    <h2>Investisseurs & Locaux Professionnels</h2>
+                </div>
+                <p>Solutions dédiées aux porteurs de projets d'envergure et aux entreprises recherchant des emplacements stratégiques de premier ordre.</p>
+            </div>
+            <div class="b2b-grid">
+                <div class="b2b-card">
+                    <div>
+                        <h3>Fonds d'Investissement & Family Offices</h3>
+                        <p>Structuration d'acquisitions d'immeubles de rendement, portefeuilles résidentiels et opérations de promotion immobilière à fort potentiel de valorisation.</p>
+                    </div>
+                    <a href="#contact" class="btn-magnum"><span>Espace Investisseurs</span> <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="b2b-card">
+                    <div>
+                        <h3>Sièges Sociaux & Boutiques de Luxe</h3>
+                        <p>Implantations commerciales premium sur les plus grandes avenues internationales (Faubourg Saint-Honoré, Via Montenapoleone, 5th Avenue).</p>
+                    </div>
+                    <a href="#contact" class="btn-magnum"><span>Découvrir les locaux</span> <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       SECTION: TÉMOIGNAGES
+       ========================================== -->
+    <section class="section-padding">
+        <div class="container-fluid">
+            <div class="section-header">
+                <div>
+                    <span class="art-font" style="font-size: 14px; letter-spacing: 0.2em; display: block; margin-bottom: 12px;">PAROLES DE CLIENTS</span>
+                    <h2>Témoignages & Distinctions</h2>
+                </div>
+                <p>La confiance de nos clients est notre plus belle récompense.</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <i class="fa-solid fa-quote-left"></i>
+                    <p class="testimonial-text">"Magnum Immobilière a géré l'acquisition de notre domaine à Cannes avec un professionnalisme absolu. Le niveau de discrétion et de service est tout simplement sans égal sur le marché."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Lord & Lady Harrington</h4>
+                            <p>Acquéreurs à Cannes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fa-solid fa-quote-left"></i>
+                    <p class="testimonial-text">"Leur accès aux dossiers Off-Market m'a permis d'acquérir un penthouse exceptionnel à Paris en moins de trois semaines, sans jamais qu'aucune information ne fuite."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Alexandre V.</h4>
+                            <p>Investisseur institutionnel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       SECTION: FAQ
+       ========================================== -->
+    <section class="section-padding" style="background: var(--bg-surface); border-top: 1px solid var(--border-subtle);">
+        <div class="container-fluid">
+            <div class="section-header" style="text-align: center; display: block;">
+                <span class="art-font" style="font-size: 14px; letter-spacing: 0.2em; display: block; margin-bottom: 12px;">QUESTIONS FRÉQUENTES</span>
+                <h2>Tout ce que vous devez savoir</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Comment accédez-vous aux biens Off-Market ?</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Grâce à notre réseau exclusif de propriétaires, de notaires et de family offices noué au fil de 15 années d'exercice, plus de 40% de nos transactions sont réalisées en toute confidentialité, hors des canaux publics.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quels sont vos honoraires pour l'accompagnement à l'achat ?</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Nos honoraires varient selon la complexité du mandat et le type de bien recherché. Ils sont systématiquement validés en toute transparence lors de la consultation privée initiale.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Proposez-vous une gestion locative de prestige ?</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Oui, notre service de property management dédié prend en charge l'intendance complète, l'entretien paysager, la sécurité et la location saisonnière haut de gamme de vos biens.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       SECTION: CONTACT
+       ========================================== -->
+    <section class="contact-section section-padding" id="contact">
+        <div class="container-fluid">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="art-font" style="font-size: 14px; letter-spacing: 0.2em; display: block; margin-bottom: 12px;">ENTRER EN CONTACT</span>
+                    <h2>Commencez votre projet d'exception</h2>
+                    <p>Nos conseillers privés se tiennent à votre entière disposition pour organiser une consultation en personne ou en visio-conférence sécurisée.</p>
+                    <div class="contact-details-list">
+                        <div class="contact-detail-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>42 Avenue Montaigne, 75008 Paris, France</span>
+                        </div>
+                        <div class="contact-detail-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>+33 (0)1 42 68 55 00</span>
+                        </div>
+                        <div class="contact-detail-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>contact@magnum-immobiliere.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form onsubmit="event.preventDefault(); alert('Votre message a été transmis avec succès. Un conseiller privé vous contactera dans les plus brefs délais.');">
+                        <div class="form-group">
+                            <label class="form-label">Nom complet</label>
+                            <input type="text" class="form-input" placeholder="Votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Adresse e-mail</label>
+                            <input type="email" class="form-input" placeholder="votre@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nature du projet</label>
+                            <input type="text" class="form-input" placeholder="Acquisition, Vente, Investissement..." required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-textarea" placeholder="Décrivez vos attentes..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-magnum btn-magnum-gold" style="width: 100%;"><span>Envoyer la demande</span> <i class="fa-solid fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       FOOTER TRÈS COMPLET
+       ========================================== -->
+    <footer>
+        <div class="container-fluid">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>MAGNUM IMMOBILIÈRE</h3>
+                    <p>L'adresse incontournable des passionnés d'architecture rare et de biens immobiliers d'exception à travers le monde.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Portfolio</h3>
+                    <ul class="footer-links">
+                        <li><a href="#residences">Résidences</a></li>
+                        <li><a href="#appartements">Appartements</a></li>
+                        <li><a href="#maisons">Maisons</a></li>
+                        <li><a href="#locaux">Locaux Professionnels</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Cabinet</h3>
+                    <ul class="footer-links">
+                        <li><a href="#apropos">À propos</a></li>
+                        <li><a href="#investisseurs">Investisseurs</a></li>
+                        <li><a href="#contact">Carrières</a></li>
+                        <li><a href="#contact">Presse</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Légal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Mentions Légales</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                        <li><a href="#">Gestion des Cookies</a></li>
+                        <li><a href="#">Code Éthique</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Magnum Immobilière. Tous droits réservés. Conçu pour l'excellence.</p>
+                <p>Design System v4.8 - Luxe Edition</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+       JAVASCRIPT INTERACTIONS & ANIMATIONS GSAP
+       ========================================== -->
+    <script>
+        // Menu Mobile Toggle
+        const menuToggleBtn = document.getElementById('menuToggleBtn');
+        const menuCloseBtn = document.getElementById('menuCloseBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuToggleBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        menuCloseBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const currentlyActive = document.querySelector('.faq-item.active');
+                if (currentlyActive && currentlyActive !== item) {
+                    currentlyActive.classList.remove('active');
+                }
+                item.classList.toggle('active');
+            });
+        });
+
+        // Filtrage des biens
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const propertyCards = document.querySelectorAll('.property-card');
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                const filter = tab.getAttribute('data-filter');
+
+                propertyCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        gsap.fromTo(card, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 });
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // GSAP ScrollTrigger Animations
+        window.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animation des sections au scroll
+            const sections = document.querySelectorAll('.section-padding');
+            sections.forEach(sec => {
+                gsap.fromTo(sec, 
+                    { opacity: 0, y: 50 }, 
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: sec,
+                            start: "top 85%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
+        });
+    </script>
+</body>
+</html>
