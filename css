@@ -1,0 +1,349 @@
+/* /css/style.css (Phase 1 : Variables, Reset, Typographie, Layout global) */
+
+:root {
+    /* Couleurs */
+    --c-black: #050505;
+    --c-white: #FAFAFA;
+    --c-accent: #E5C158; /* Jaune moderne, élégant, non agressif */
+    --c-grey: #1A1A1A;
+    --c-grey-light: #808080;
+
+    /* Typographie */
+    --f-heading: 'Cinzel', serif;
+    --f-body: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Tailles de texte fluides */
+    --text-h1: clamp(3.5rem, 8vw, 8rem);
+    --text-h2: clamp(2.5rem, 5vw, 5rem);
+    --text-h3: clamp(1.5rem, 3vw, 2.5rem);
+    --text-p: clamp(1rem, 1.2vw, 1.125rem);
+    --text-small: 0.875rem;
+
+    /* Marges & Espacements (Strict respect des directives) */
+    --space-edge: 150px; /* Base Desktop */
+    
+    /* Easing premium pour les transitions CSS */
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+/* --------------------------------------------------------------------------
+   RESET & CONFIGURATION GLOBALE
+-------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    background-color: var(--c-black);
+    color: var(--c-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--f-body);
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+    cursor: none; /* Désactivation du curseur natif pour le custom */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHIE PREMIUM
+-------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--f-heading);
+    font-weight: 500;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.accent {
+    color: var(--c-accent);
+}
+
+/* --------------------------------------------------------------------------
+   CURSEUR PERSONNALISÉ (UI/UX)
+-------------------------------------------------------------------------- */
+.cursor-dot, .cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--c-white);
+    transition: transform 0.2s var(--ease-out-expo);
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo), background-color 0.3s var(--ease-out-expo);
+}
+
+/* État hover */
+.cursor-hover .cursor-outline {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(229, 193, 88, 0.1);
+    border-color: var(--c-accent);
+}
+.cursor-hover .cursor-dot {
+    transform: translate(-50%, -50%) scale(0);
+}
+
+/* --------------------------------------------------------------------------
+   HEADER & NAVIGATION
+-------------------------------------------------------------------------- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 2rem var(--space-edge);
+    mix-blend-mode: difference; /* Contraste parfait sur 3D claire ou sombre */
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-family: var(--f-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.nav-desktop {
+    display: flex;
+}
+
+.nav-list {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-link {
+    font-size: var(--text-small);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: var(--c-accent);
+    transition: width 0.6s var(--ease-out-expo);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.btn-contact {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-size: var(--text-small);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+}
+
+.btn-contact:hover {
+    border-color: var(--c-accent);
+    background-color: var(--c-accent);
+    color: var(--c-black);
+}
+
+.menu-burger {
+    display: none;
+    background: none;
+    border: none;
+    width: 40px;
+    height: 20px;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-burger .line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--c-white);
+    transform-origin: right;
+    transition: transform 0.4s var(--ease-out-expo);
+}
+
+/* --------------------------------------------------------------------------
+   HERO SECTION
+-------------------------------------------------------------------------- */
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    padding: 0 var(--space-edge);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.webgl-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.8; /* Laisse le texte respirer */
+}
+
+.hero-wrapper {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.subtitle {
+    font-size: var(--text-small);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--c-accent);
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.title-main {
+    font-size: var(--text-h1);
+    color: var(--c-white);
+}
+
+.line-wrap {
+    display: block;
+    overflow: hidden;
+}
+
+.line-inner {
+    display: block;
+    transform: translateY(110%); /* Préparation pour GSAP */
+}
+
+.hero-footer {
+    position: absolute;
+    bottom: 3rem;
+    left: var(--space-edge);
+    right: var(--space-edge);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.project-indicator .label {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--c-grey-light);
+    margin-bottom: 0.25rem;
+}
+
+.project-indicator .value {
+    font-size: var(--text-small);
+}
+
+.scroll-indicator {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.scroll-text {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.scroll-line {
+    width: 60px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--c-white);
+    transform: translateX(-100%);
+    animation: scrollLine 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+@keyframes scrollLine {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE GESTION DES MARGES STRICTES
+-------------------------------------------------------------------------- */
+@media screen and (max-width: 1440px) {
+    :root { --space-edge: 120px; } /* Laptop */
+}
+
+@media screen and (max-width: 1024px) {
+    :root { --space-edge: 64px; } /* Tablette */
+    .nav-desktop, .btn-contact { display: none; }
+    .menu-burger { display: flex; }
+}
+
+@media screen and (max-width: 768px) {
+    :root { --space-edge: 24px; } /* Mobile */
+    .hero-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+}
