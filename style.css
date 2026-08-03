@@ -29,19 +29,25 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000; /* Reste toujours visible au-dessus du menu */
+    z-index: 1000; /* Reste toujours au-dessus du menu */
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 300; /* Version épurée pour le logo également */
-    color: var(--text-white);
+/* --- LOGO SVG --- */
+.logo-svg {
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
-    letter-spacing: -1px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.logo span {
-    color: var(--accent-yellow);
+.logo-svg svg {
+    display: block;
+    height: auto;
+}
+
+.logo-svg:hover {
+    opacity: 0.8;
+    transform: scale(0.98);
 }
 
 /* --- BOUTON HAMBURGER INTERACTIF --- */
@@ -103,7 +109,7 @@ body {
 
 .nav-links li {
     margin: 35px 0;
-    overflow: hidden; /* Pour contenir d'éventuels effets d'apparition */
+    overflow: hidden;
 }
 
 .nav-links a {
@@ -117,10 +123,6 @@ body {
     position: relative;
     padding-bottom: 8px;
     transition: opacity 0.3s ease;
-}
-
-/* Éviter l'effet de flou sur les polices ultra-fines */
-.nav-links a {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -155,6 +157,11 @@ body {
         padding: 25px 25px;
     }
     
+    .logo-svg svg {
+        width: 150px;
+        height: auto;
+    }
+
     .nav-links li {
         margin: 25px 0;
     }
