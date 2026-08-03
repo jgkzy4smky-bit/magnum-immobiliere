@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAGNUM — Immobilier d'exception</title>
+
+<!-- TYPOGRAPHIES -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- GSAP ANIMATIONS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+<style>
+
+
+/* =========================
+   BASE
+========================= */
+
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+html{
+scroll-behavior:smooth;
+}
+
+
+body{
+
+background:#050505;
+color:#fff;
+
+font-family:'Montserrat',sans-serif;
+
+overflow-x:hidden;
+
+cursor:none;
+
+}
+
+
+::selection{
+
+background:#FFD400;
+color:#000;
+
+}
+
+
+
+
+/* =========================
+ CURSEUR PREMIUM
+========================= */
+
+
+.cursor{
+
+position:fixed;
+
+width:22px;
+height:22px;
+
+border:2px solid #FFD400;
+
+border-radius:50%;
+
+pointer-events:none;
+
+z-index:999;
+
+transform:translate(-50%,-50%);
+
+mix-blend-mode:difference;
+
+}
+
+
+
+
+/* =========================
+ HEADER
+========================= */
+
+
+header{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+
+padding:35px 7%;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+z-index:100;
+
+
+}
+
+
+.logo{
+
+font-size:32px;
+
+font-weight:700;
+
+letter-spacing:8px;
+
+}
+
+
+
+.logo span{
+
+color:#FFD400;
+
+}
+
+
+
+nav{
+
+display:flex;
+
+gap:45px;
+
+}
+
+
+
+nav a{
+
+color:white;
+
+text-decoration:none;
+
+font-size:13px;
+
+letter-spacing:3px;
+
+transition:.4s;
+
+}
+
+
+nav a:hover{
+
+color:#FFD400;
+
+}
+
+
+
+
+
+/* =========================
+ HERO
+========================= */
+
+
+.hero{
+
+height:100vh;
+
+position:relative;
+
+display:flex;
+
+align-items:center;
+
+padding:0 7%;
+
+overflow:hidden;
+
+
+}
+
+
+
+.hero::before{
+
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+
+background:
+
+linear-gradient(
+90deg,
+rgba(0,0,0,.85),
+rgba(0,0,0,.25)
+),
+
+url("https://images.unsplash.com/photo-1600607688969-a5bfcd646154")
+
+center/cover;
+
+
+z-index:-1;
+
+
+transform:scale(1.15);
+
+
+animation:zoom 12s infinite alternate;
+
+
+}
+
+
+
+@keyframes zoom{
+
+from{
+transform:scale(1.15);
+}
+
+
+to{
+transform:scale(1.02);
+}
+
+}
+
+
+
+
+.yellow-line{
+
+width:100px;
+
+height:4px;
+
+background:#FFD400;
+
+margin-bottom:35px;
+
+
+}
+
+
+
+.hero small{
+
+
+font-size:14px;
+
+letter-spacing:6px;
+
+color:#FFD400;
+
+}
+
+
+
+.hero h1{
+
+
+font-size:clamp(70px,10vw,160px);
+
+font-weight:700;
+
+line-height:.85;
+
+margin:35px 0;
+
+
+}
+
+
+
+.hero h1 em{
+
+
+font-family:'Cormorant Garamond';
+
+font-weight:300;
+
+color:#FFD400;
+
+}
+
+
+
+.hero p{
+
+
+max-width:650px;
+
+font-size:22px;
+
+line-height:1.6;
+
+color:#ddd;
+
+
+}
+
+
+
+
+.button{
+
+
+display:inline-block;
+
+margin-top:50px;
+
+padding:20px 45px;
+
+background:#FFD400;
+
+color:#000;
+
+text-decoration:none;
+
+font-weight:700;
+
+letter-spacing:2px;
+
+transition:.4s;
+
+
+}
+
+
+
+.button:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+0 20px 50px #FFD40055;
+
+}
+
+
+
+
+/* =========================
+ SECTIONS
+========================= */
+
+
+section{
+
+padding:150px 7%;
+
+}
+
+
+
+.title{
+
+
+font-size:clamp(45px,7vw,100px);
+
+line-height:1;
+
+font-weight:600;
+
+
+}
+
+
+
+.title span{
+
+
+font-family:'Cormorant Garamond';
+
+font-style:italic;
+
+color:#FFD400;
+
+
+}
+
+
+
+.description{
+
+
+margin-top:50px;
+
+max-width:900px;
+
+font-size:28px;
+
+line-height:1.6;
+
+color:#aaa;
+
+
+}
+
+
+
+
+
+/* =========================
+ 3D PROJECTS
+========================= */
+
+
+.projects{
+
+
+display:grid;
+
+grid-template-columns:repeat(12,1fr);
+
+gap:30px;
+
+margin-top:100px;
+
+
+}
+
+
+
+.card{
+
+
+height:600px;
+
+position:relative;
+
+overflow:hidden;
+
+transform-style:preserve-3d;
+
+transition:.5s;
+
+
+}
+
+
+
+.card:nth-child(1){
+
+grid-column:span 7;
+
+}
+
+
+
+.card:nth-child(2){
+
+grid-column:span 5;
+
+}
+
+
+
+.card:nth-child(3){
+
+grid-column:span 12;
+
+height:500px;
+
+}
+
+
+
+
+.card img{
+
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+transition:1s;
+
+
+}
+
+
+
+.card:hover img{
+
+
+transform:scale(1.12);
+
+
+}
+
+
+
+
+.card-info{
+
+
+position:absolute;
+
+bottom:0;
+
+padding:45px;
+
+width:100%;
+
+
+background:
+
+linear-gradient(
+transparent,
+#000
+);
+
+
+}
+
+
+
+.card-info h3{
+
+
+font-family:'Cormorant Garamond';
+
+font-size:55px;
+
+font-weight:400;
+
+
+}
+
+
+
+.card-info p{
+
+
+color:#FFD400;
+
+letter-spacing:3px;
+
+
+}
+
+
+
+
+
+/* SUITE DANS LA PARTIE 2 */
+
+
+
+
+
+/* =========================
+ EXPERTISE
+========================= */
+
+
+.expertise{
+
+background:#0a0a0a;
+
+}
+
+
+
+.expertise-grid{
+
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:40px;
+
+margin-top:100px;
+
+
+}
+
+
+
+.expertise-card{
+
+
+border-top:1px solid #333;
+
+padding-top:35px;
+
+transition:.5s;
+
+
+}
+
+
+
+.expertise-card:hover{
+
+
+border-color:#FFD400;
+
+transform:translateY(-15px);
+
+
+}
+
+
+
+.number{
+
+
+font-size:70px;
+
+font-weight:700;
+
+color:#FFD400;
+
+opacity:.9;
+
+
+}
+
+
+
+.expertise-card h3{
+
+
+font-size:30px;
+
+margin:25px 0;
+
+
+}
+
+
+
+.expertise-card p{
+
+
+color:#999;
+
+line-height:1.7;
+
+
+}
+
+
+
+
+/* =========================
+ PHILOSOPHIE
+========================= */
+
+
+.manifesto{
+
+
+text-align:center;
+
+min-height:80vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+
+}
+
+
+
+.manifesto h2{
+
+
+font-size:clamp(50px,8vw,120px);
+
+font-weight:500;
+
+line-height:1;
+
+
+}
+
+
+
+.manifesto em{
+
+
+font-family:'Cormorant Garamond';
+
+color:#FFD400;
+
+font-weight:300;
+
+
+}
+
+
+
+
+
+/* =========================
+ STATISTIQUES
+========================= */
+
+
+.stats{
+
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:40px;
+
+
+border-top:1px solid #333;
+
+border-bottom:1px solid #333;
+
+padding:80px 0;
+
+
+}
+
+
+
+.stat h3{
+
+
+font-size:90px;
+
+color:#FFD400;
+
+font-weight:700;
+
+
+}
+
+
+
+.stat p{
+
+
+letter-spacing:3px;
+
+color:#999;
+
+
+}
+
+
+
+
+
+/* =========================
+ CONTACT
+========================= */
+
+
+.contact{
+
+
+text-align:center;
+
+position:relative;
+
+
+}
+
+
+
+.contact h2{
+
+
+font-size:clamp(50px,8vw,110px);
+
+line-height:1;
+
+
+}
+
+
+
+.contact h2 span{
+
+
+font-family:'Cormorant Garamond';
+
+color:#FFD400;
+
+
+}
+
+
+
+.contact a{
+
+
+display:inline-block;
+
+margin-top:60px;
+
+padding:25px 70px;
+
+border:1px solid #FFD400;
+
+color:#FFD400;
+
+text-decoration:none;
+
+font-weight:600;
+
+letter-spacing:3px;
+
+transition:.5s;
+
+
+}
+
+
+
+.contact a:hover{
+
+
+background:#FFD400;
+
+color:#000;
+
+
+}
+
+
+
+
+/* =========================
+ FOOTER
+========================= */
+
+
+footer{
+
+
+padding:60px 7%;
+
+border-top:1px solid #222;
+
+display:flex;
+
+justify-content:space-between;
+
+color:#777;
+
+
+}
+
+
+
+
+/* =========================
+ ANIMATIONS
+========================= */
+
+
+.reveal{
+
+
+opacity:0;
+
+transform:translateY(80px);
+
+
+}
+
+
+
+.glow{
+
+
+position:absolute;
+
+width:400px;
+
+height:400px;
+
+background:#FFD400;
+
+filter:blur(180px);
+
+opacity:.12;
+
+pointer-events:none;
+
+
+}
+
+
+
+
+
+/* =========================
+ MOBILE
+========================= */
+
+
+@media(max-width:900px){
+
+
+
+nav{
+
+display:none;
+
+}
+
+
+
+.projects{
+
+
+display:block;
+
+
+}
+
+
+
+.card,
+.card:nth-child(1),
+.card:nth-child(2),
+.card:nth-child(3){
+
+
+height:450px;
+
+margin-bottom:30px;
+
+
+}
+
+
+
+.expertise-grid{
+
+
+grid-template-columns:1fr;
+
+
+}
+
+
+
+.stats{
+
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+
+}
+
+
+
+footer{
+
+
+display:block;
+
+}
+
+
+
+}
+
+
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="cursor"></div>
+
+<div class="glow"></div>
+
+
+
+<header>
+
+
+<div class="logo">
+
+MAGNUM<span>.</span>
+
+</div>
+
+
+
+<nav>
+
+<a href="#vision">Vision</a>
+
+<a href="#projects">Projets</a>
+
+<a href="#expertise">Expertise</a>
+
+<a href="#contact">Contact</a>
+
+</nav>
+
+
+</header>
+
+
+
+
+
+
+<section class="hero">
+
+
+<div class="hero-content reveal">
+
+
+<div class="yellow-line"></div>
+
+
+<small>
+PROMOTEUR IMMOBILIER DE PRESTIGE
+</small>
+
+
+
+<h1>
+
+Créer des<br>
+
+<em>héritages.</em>
+
+
+</h1>
+
+
+
+<p>
+
+Nous concevons des lieux d'exception
+où architecture, émotion et précision
+se rencontrent.
+
+</p>
+
+
+
+<a class="button">
+
+Découvrir MAGNUM
+
+</a>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section id="vision">
+
+
+<h2 class="title reveal">
+
+L'architecture devient
+
+<span>
+
+une signature.
+
+</span>
+
+
+</h2>
+
+
+
+<p class="description reveal">
+
+MAGNUM ne construit pas simplement
+des bâtiments. Nous créons des espaces
+pensés pour traverser le temps.
+
+</p>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section id="projects">
+
+
+<h2 class="title reveal">
+
+Projets
+
+</h2>
+
+
+
+<div class="projects">
+
+
+
+<div class="card reveal">
+
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+
+
+<div class="card-info">
+
+<h3>
+Résidence SVJ
+</h3>
+
+<p>
+LUXEMBOURG
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card reveal">
+
+<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
+
+
+<div class="card-info">
+
+<h3>
+Villa Horizon
+</h3>
+
+<p>
+COLLECTION PRIVÉE
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+<div class="card reveal">
+
+<img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d">
+
+
+<div class="card-info">
+
+<h3>
+MAGNUM Signature
+</h3>
+
+<p>
+ARCHITECTURE PREMIUM
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section id="expertise" class="expertise">
+
+
+<h2 class="title reveal">
+
+Notre
+
+<span>
+
+méthode.
+
+</span>
+
+</h2>
+
+
+
+
+<div class="expertise-grid">
+
+
+
+<div class="expertise-card reveal">
+
+<div class="number">
+01
+</div>
+
+<h3>
+Vision
+</h3>
+
+<p>
+Comprendre un lieu avant d'imaginer son futur.
+</p>
+
+</div>
+
+
+
+<div class="expertise-card reveal">
+
+<div class="number">
+02
+</div>
+
+<h3>
+Architecture
+</h3>
+
+<p>
+Créer des lignes fortes et intemporelles.
+</p>
+
+</div>
+
+
+
+<div class="expertise-card reveal">
+
+<div class="number">
+03
+</div>
+
+<h3>
+Excellence
+</h3>
+
+<p>
+Chaque détail devient une différence.
+</p>
+
+</div>
+
+
+
+<div class="expertise-card reveal">
+
+<div class="number">
+04
+</div>
+
+<h3>
+Héritage
+</h3>
+
+<p>
+Des projets conçus pour durer.
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="manifesto">
+
+
+<h2 class="reveal">
+
+Nous créons
+
+<em>
+
+plus que des espaces.
+
+</em>
+
+<br>
+
+Nous créons
+
+<em>
+
+des émotions.
+
+</em>
+
+
+</h2>
+
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+
+<div class="stats">
+
+
+<div class="stat reveal">
+
+<h3>
+25+
+</h3>
+
+<p>
+PROJETS SIGNATURE
+</p>
+
+
+</div>
+
+
+
+<div class="stat reveal">
+
+<h3>
+10
+</h3>
+
+<p>
+ANNÉES D'EXIGENCE
+</p>
+
+
+</div>
+
+
+
+<div class="stat reveal">
+
+<h3>
+100%
+</h3>
+
+<p>
+ENGAGEMENT QUALITÉ
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<section id="contact" class="contact">
+
+
+<h2 class="reveal">
+
+Votre prochain
+
+<span>
+
+chef-d'œuvre.
+
+</span>
+
+
+</h2>
+
+
+
+<a href="#" class="reveal">
+
+PRENDRE CONTACT
+
+</a>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<footer>
+
+
+<div class="logo">
+
+MAGNUM.
+
+</div>
+
+
+<div>
+
+Immobilier d'exception
+
+</div>
+
+
+
+</footer>
+
+
+
+
+
+
+
+<script>
+
+
+/* CURSEUR */
+
+
+const cursor=document.querySelector(".cursor");
+
+
+document.addEventListener("mousemove",(e)=>{
+
+cursor.style.left=e.clientX+"px";
+
+cursor.style.top=e.clientY+"px";
+
+});
+
+
+
+
+
+/* GSAP */
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+
+gsap.utils.toArray(".reveal").forEach((element)=>{
+
+
+gsap.to(element,{
+
+opacity:1,
+
+y:0,
+
+duration:1.2,
+
+ease:"power3.out",
+
+scrollTrigger:{
+
+trigger:element,
+
+start:"top 85%"
+
+}
+
+});
+
+
+});
+
+
+
+
+
+/* PARALLAX IMAGES */
+
+
+gsap.utils.toArray(".card img").forEach(img=>{
+
+
+gsap.to(img,{
+
+y:-40,
+
+scrollTrigger:{
+
+trigger:img,
+
+scrub:true
+
+}
+
+});
+
+
+});
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
