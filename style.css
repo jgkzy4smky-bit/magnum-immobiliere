@@ -1,0 +1,77 @@
+/* --- SECTION HERO --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 80px; /* Alignement sur les bords */
+    padding-top: 100px;
+    background-color: var(--bg-color);
+}
+
+.hero-content {
+    max-width: 1100px; /* Évite que le texte s'étale trop sur les grands écrans */
+}
+
+.hero-tagline {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    color: #666666;
+    margin-bottom: 35px;
+}
+
+.hero-title {
+    font-size: clamp(38px, 6vw, 76px); /* Taille adaptative selon l'écran */
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    margin-bottom: 40px;
+}
+
+.hero-title .highlight {
+    color: var(--accent-color);
+}
+
+.hero-subtitle {
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.7;
+    color: #888888;
+    max-width: 550px;
+    margin-bottom: 55px;
+    font-weight: 300;
+}
+
+/* BOUTON ÉPURÉ HAUT DE GAMME */
+.btn-hero {
+    display: inline-block;
+    padding: 22px 44px;
+    border: 1px solid #222222;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-hero:hover {
+    border-color: var(--text-color);
+    background-color: var(--text-color);
+    color: #000000;
+}
+
+/* RESPONSIVE DESIGN POUR MOBILE */
+@media (max-width: 768px) {
+    .hero {
+        padding: 0 30px;
+        padding-top: 120px;
+    }
+    .hero-tagline {
+        margin-bottom: 20px;
+    }
+    .hero-subtitle {
+        margin-bottom: 40px;
+    }
+}
