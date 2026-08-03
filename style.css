@@ -1,77 +1,165 @@
-/* --- SECTION HERO --- */
-.hero {
-    min-height: 100vh;
+/* --- INITIALISATION & VARIABLES --- */
+:root {
+    --bg-black: #000000;
+    --text-white: #ffffff;
+    --accent-yellow: #ffe600;
+    --font-premium: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: var(--font-premium);
+    overflow-x: hidden;
+}
+
+/* --- LOGO ET EN-TÊTE --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 50px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 0 80px; /* Alignement sur les bords */
-    padding-top: 100px;
-    background-color: var(--bg-color);
+    z-index: 1000; /* Reste toujours visible au-dessus du menu */
 }
 
-.hero-content {
-    max-width: 1100px; /* Évite que le texte s'étale trop sur les grands écrans */
-}
-
-.hero-tagline {
-    display: block;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 6px;
-    color: #666666;
-    margin-bottom: 35px;
-}
-
-.hero-title {
-    font-size: clamp(38px, 6vw, 76px); /* Taille adaptative selon l'écran */
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -1.5px;
-    margin-bottom: 40px;
-}
-
-.hero-title .highlight {
-    color: var(--accent-color);
-}
-
-.hero-subtitle {
-    font-size: clamp(15px, 1.5vw, 18px);
-    line-height: 1.7;
-    color: #888888;
-    max-width: 550px;
-    margin-bottom: 55px;
-    font-weight: 300;
-}
-
-/* BOUTON ÉPURÉ HAUT DE GAMME */
-.btn-hero {
-    display: inline-block;
-    padding: 22px 44px;
-    border: 1px solid #222222;
-    color: var(--text-color);
+.logo {
+    font-size: 24px;
+    font-weight: 300; /* Version épurée pour le logo également */
+    color: var(--text-white);
     text-decoration: none;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 3px;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--accent-yellow);
+}
+
+/* --- BOUTON HAMBURGER INTERACTIF --- */
+.menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1001;
+    padding: 10px;
+}
+
+.bar {
+    width: 30px;
+    height: 1px; /* Ligne ultra-fine */
+    background-color: var(--text-white);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* Animation des barres en "X" lors de l'ouverture */
+.menu-btn.active .bar:nth-child(1) {
+    transform: translateY(4.5px) rotate(45deg);
+}
+
+.menu-btn.active .bar:nth-child(2) {
+    transform: translateY(-4.5px) rotate(-45deg);
+}
+
+/* --- OVERLAY DU MENU PLEIN ÉCRAN --- */
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    
+    /* Animation de rideau vertical (glissement du haut vers le bas) */
+    transform: translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* État ouvert déclenché par le JS */
+.nav-overlay.open {
+    transform: translateY(0);
+}
+
+/* --- LIENS DU MENU (MONTSERRAT THIN) --- */
+.nav-links {
+    list-style: none;
+    text-align: center;
+}
+
+.nav-links li {
+    margin: 35px 0;
+    overflow: hidden; /* Pour contenir d'éventuels effets d'apparition */
+}
+
+.nav-links a {
+    font-family: var(--font-premium);
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: clamp(24px, 4vw, 42px); /* Taille fluide s'adaptant à l'écran */
+    font-weight: 100; /* Force le style "Thin" de Montserrat */
+    letter-spacing: 4px;
     text-transform: uppercase;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    padding-bottom: 8px;
+    transition: opacity 0.3s ease;
 }
 
-.btn-hero:hover {
-    border-color: var(--text-color);
-    background-color: var(--text-color);
-    color: #000000;
+/* Éviter l'effet de flou sur les polices ultra-fines */
+.nav-links a {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* RESPONSIVE DESIGN POUR MOBILE */
+/* --- ANIMATION AU SURVOL (Ligne fine épurée) --- */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--text-white);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Effet d'atténuation sur les autres liens non survolés */
+.nav-links:hover a:not(:hover) {
+    opacity: 0.4;
+}
+
+/* --- RESPONSIVE DESIGN (MOBILE & TABLETTE) --- */
 @media (max-width: 768px) {
-    .hero {
-        padding: 0 30px;
-        padding-top: 120px;
+    .navbar {
+        padding: 25px 25px;
     }
-    .hero-tagline {
-        margin-bottom: 20px;
+    
+    .nav-links li {
+        margin: 25px 0;
     }
-    .hero-subtitle {
-        margin-bottom: 40px;
+    
+    .nav-links a {
+        letter-spacing: 2px;
     }
 }
