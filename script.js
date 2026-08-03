@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuLinks = document.querySelectorAll('.nav-links a');
 
     if (menuBtn && navOverlay) {
-        // Ouverture et fermeture via le bouton hamburger
+        // Bascule de l'état ouvert/fermé du menu
         menuBtn.addEventListener('click', () => {
             menuBtn.classList.toggle('active');
             navOverlay.classList.toggle('open');
         });
 
-        // Fermeture automatique lors du clic sur un lien du menu
+        // Fermeture automatique du menu lors d'un clic sur un lien
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menuBtn.classList.remove('active');
