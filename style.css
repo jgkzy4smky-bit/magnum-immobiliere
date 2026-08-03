@@ -1,11 +1,11 @@
-/* --- VARIABLES & STYLES DE BASE --- */
+/* --- CONFIGURATION & PALETTE LUXE --- */
 :root {
-    --primary-color: #111111;
-    --accent-color: #c5a880; /* Teinte dorée / bronze */
-    --text-light: #ffffff;
-    --text-dark: #333333;
-    --bg-blur: rgba(17, 17, 17, 0.9);
-    --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    --primary-bg: #0b0b0b;
+    --card-bg: #141414;
+    --accent-gold: #c5a880; /* Teinte bronze signature */
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --transition-premium: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -16,37 +16,44 @@
 }
 
 body {
-    background-color: #fcfcfc;
-    color: var(--text-dark);
+    background-color: var(--primary-bg);
+    color: var(--text-main);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* --- DESIGN DE L'EN-TÊTE --- */
+/* --- LOGIQUE DE L'EN-TÊTE FIXE --- */
 .header-nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 25px 50px;
+    padding: 30px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(11, 11, 11, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .logo {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--primary-color);
+    letter-spacing: 4px;
     cursor: pointer;
 }
 
-/* --- MENU GRAND ÉCRAN (OUVERT PAR DÉFAUT) --- */
+.logo span {
+    font-weight: 300;
+    color: var(--accent-gold);
+    margin-left: 5px;
+}
+
+/* --- NAVIGATION DESKTOP --- */
 .nav-menu {
     display: flex;
     align-items: center;
@@ -55,39 +62,40 @@ body {
 
 .nav-item {
     position: relative;
-    margin-left: 35px;
+    margin-left: 40px;
 }
 
 .nav-link {
+    color: var(--text-main);
     text-decoration: none;
-    color: var(--primary-color);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     padding: 10px 0;
-    transition: var(--transition-smooth);
+    transition: var(--transition-premium);
     cursor: pointer;
 }
 
 .nav-link:hover {
-    color: var(--accent-color);
+    color: var(--accent-gold);
 }
 
-/* Menu déroulant (Dropdown) Bureau */
+/* Dropdown Bureau */
 .dropdown-menu {
     position: absolute;
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(15px);
-    background: var(--primary-color);
+    background: var(--card-bg);
     list-style: none;
-    min-width: 220px;
+    min-width: 240px;
     opacity: 0;
     visibility: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    transition: var(--transition-smooth);
-    padding: 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    transition: var(--transition-premium);
+    padding: 15px 0;
 }
 
 .nav-item:hover .dropdown-menu {
@@ -98,29 +106,29 @@ body {
 
 .dropdown-item a {
     display: block;
-    padding: 12px 25px;
-    color: rgba(255, 255, 255, 0.65);
+    padding: 12px 30px;
+    color: var(--text-muted);
     text-decoration: none;
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: var(--transition-smooth);
+    letter-spacing: 1.5px;
+    transition: var(--transition-premium);
     cursor: pointer;
 }
 
 .dropdown-item a:hover {
-    color: var(--accent-color);
-    background: rgba(255, 255, 255, 0.03);
-    padding-left: 30px;
+    color: var(--accent-gold);
+    background: rgba(255, 255, 255, 0.02);
+    padding-left: 35px;
 }
 
-/* --- BOUTON HAMBURGER INTERACTIF --- */
+/* --- BOUTON HAMBURGER SOPHISTIQUÉ --- */
 .hamburger {
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    width: 28px;
-    height: 18px;
+    width: 26px;
+    height: 16px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -130,15 +138,13 @@ body {
 .hamburger span {
     width: 100%;
     height: 2px;
-    background-color: var(--primary-color);
-    transition: var(--transition-smooth);
+    background-color: var(--text-main);
+    transition: var(--transition-premium);
     transform-origin: left center;
 }
 
-/* Animation de transformation en croix */
 .hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translate(2px, -1px);
-    background-color: var(--text-light);
 }
 
 .hamburger.active span:nth-child(2) {
@@ -148,81 +154,179 @@ body {
 
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(2px, 1px);
-    background-color: var(--text-light);
 }
 
-/* --- AGENCEMENT DES PAGES DÉDIÉES --- */
+/* --- LAYOUTS DES SECTIONS & HERO --- */
 .main-content {
-    padding-top: 140px;
-    max-width: 1100px;
-    margin: 0 auto;
-    min-height: 80vh;
+    padding-top: 120px;
+    min-height: 100vh;
 }
 
 .page-section {
     display: none;
-    animation: fadeIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    animation: slideFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .page-section.active {
     display: block;
 }
 
-.section-title {
-    font-size: 32px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 40px;
-    color: var(--primary-color);
+/* Style de la page d'accueil (Hero) */
+.hero-container {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
+.hero-badge {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.hero-title {
+    font-size: 54px;
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 25px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    font-weight: 300;
+}
+
+.btn-premium {
+    background: transparent;
+    border: 1px solid var(--accent-gold);
+    color: var(--text-main);
+    padding: 16px 35px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: var(--transition-premium);
+}
+
+.btn-premium:hover {
+    background: var(--text-main);
+    color: var(--primary-bg);
+    border-color: var(--text-main);
+}
+
+/* Titres globaux */
+.section-title {
+    font-size: 36px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.section-intro {
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 700px;
+    line-height: 1.6;
+    margin-bottom: 50px;
+}
+
+/* Grille multi-colonnes */
 .content-grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 50px;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
     align-items: center;
 }
 
 .content-image-wrapper {
     width: 100%;
-    height: 480px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    height: 500px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .placeholder-visual {
     width: 100%;
     height: 100%;
+    background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #161616 0%, #2c2c2c 100%);
-    color: var(--accent-color);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 2px;
+    color: var(--accent-gold);
     text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
 }
 
 .content-text {
     font-size: 15px;
     line-height: 1.8;
-    color: #666;
+    color: var(--text-muted);
 }
 
 .content-text p {
     margin-bottom: 25px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
+/* Grille de showcase pour programmes neufs */
+.showcase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.showcase-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.card-image-placeholder {
+    height: 250px;
+    background: #1c1c1c;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.2);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.showcase-card h3 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.showcase-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Animations */
+@keyframes slideFadeIn {
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- COMPORTEMENT SUR PETITS ÉCRANS (RESPONSIVE) --- */
+/* --- INTERFACE ULTRA-SOPHISTIQUÉE MOBILE --- */
 @media (max-width: 768px) {
     .header-nav {
         padding: 20px 30px;
@@ -238,13 +342,13 @@ body {
         right: -100%;
         width: 100%;
         height: 100vh;
-        background: var(--bg-blur);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        background: rgba(11, 11, 11, 0.96);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        transition: var(--transition-smooth);
+        transition: var(--transition-premium);
         z-index: 999;
     }
 
@@ -253,47 +357,48 @@ body {
     }
 
     .nav-item {
-        margin: 20px 0;
+        margin: 25px 0;
         width: 100%;
         text-align: center;
     }
 
     .nav-link {
-        color: var(--text-light);
-        font-size: 18px;
+        font-size: 20px;
+        letter-spacing: 3px;
     }
 
-    /* Accordéon mobile pour le sous-menu */
+    /* Accordéon Mobile pour le sous-menu */
     .dropdown-menu {
         position: static;
         transform: none;
         opacity: 1;
         visibility: visible;
         background: transparent;
+        border: none;
         box-shadow: none;
         max-height: 0;
         overflow: hidden;
         padding: 0;
-        transition: max-height 0.4s ease-out;
+        transition: max-height 0.5s ease-in-out;
     }
 
     .nav-item.mobile-expanded .dropdown-menu {
-        max-height: 250px;
+        max-height: 300px;
         margin-top: 15px;
     }
 
     .dropdown-item a {
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 15px;
-        padding: 10px 0;
+        font-size: 14px;
+        color: var(--text-muted);
+        padding: 8px 0;
     }
 
-    .content-grid {
+    .hero-title {
+        font-size: 34px;
+    }
+
+    .content-grid, .showcase-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .content-image-wrapper {
-        height: 320px;
+        gap: 40px;
     }
 }
