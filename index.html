@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAGNUM — Architecture & Immobilier d'exception</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#050505;
+color:#fff;
+font-family:Helvetica, Arial, sans-serif;
+overflow-x:hidden;
+}
+
+
+/* HEADER */
+
+header{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:35px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:20;
+
+}
+
+
+.logo{
+
+font-size:32px;
+letter-spacing:8px;
+font-weight:600;
+
+}
+
+
+nav a{
+
+color:white;
+text-decoration:none;
+margin-left:45px;
+font-size:14px;
+letter-spacing:2px;
+opacity:.8;
+
+}
+
+
+
+/* HERO */
+
+.hero{
+
+height:100vh;
+
+background:
+linear-gradient(
+90deg,
+rgba(0,0,0,.8),
+rgba(0,0,0,.25)
+),
+url("https://images.unsplash.com/photo-1600607688969-a5bfcd646154")
+center/cover;
+
+display:flex;
+align-items:center;
+
+padding:0 7%;
+
+}
+
+
+
+.hero-content{
+
+max-width:900px;
+
+}
+
+
+.tag{
+
+letter-spacing:5px;
+font-size:14px;
+color:#c5b38a;
+
+}
+
+
+h1{
+
+font-size:clamp(70px,9vw,150px);
+line-height:.85;
+font-weight:500;
+margin:35px 0;
+
+}
+
+
+
+.hero p{
+
+font-size:22px;
+color:#ddd;
+max-width:600px;
+line-height:1.5;
+
+}
+
+
+
+.button{
+
+display:inline-block;
+margin-top:45px;
+padding:18px 45px;
+background:#fff;
+color:#000;
+text-decoration:none;
+letter-spacing:2px;
+
+}
+
+
+
+
+
+/* INTRO */
+
+section{
+
+padding:140px 7%;
+
+}
+
+
+
+.title{
+
+font-size:clamp(45px,6vw,90px);
+font-weight:400;
+line-height:1;
+
+}
+
+
+
+.description{
+
+margin-top:40px;
+max-width:800px;
+font-size:25px;
+line-height:1.6;
+color:#aaa;
+
+}
+
+
+
+
+
+/* PROJECTS */
+
+.projects{
+
+margin-top:80px;
+display:grid;
+grid-template-columns:repeat(12,1fr);
+gap:30px;
+
+}
+
+
+.project{
+
+position:relative;
+overflow:hidden;
+
+}
+
+
+.project:nth-child(1){
+
+grid-column:span 7;
+height:650px;
+
+}
+
+
+.project:nth-child(2){
+
+grid-column:span 5;
+height:650px;
+
+}
+
+
+.project:nth-child(3){
+
+grid-column:span 12;
+height:500px;
+
+}
+
+
+
+.project img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+transition:1s;
+
+}
+
+
+.project:hover img{
+
+transform:scale(1.08);
+
+}
+
+
+
+.project-info{
+
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:40px;
+
+background:linear-gradient(
+transparent,
+rgba(0,0,0,.9)
+);
+
+}
+
+
+
+.project-info h3{
+
+font-size:35px;
+font-weight:400;
+
+}
+
+
+
+.project-info p{
+
+color:#ccc;
+margin-top:10px;
+
+}
+
+
+
+
+
+/* PHILOSOPHY */
+
+.philosophy{
+
+background:#0b0b0b;
+
+}
+
+
+.philosophy-grid{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:50px;
+margin-top:80px;
+
+}
+
+
+.number{
+
+font-size:60px;
+color:#c5b38a;
+
+}
+
+
+.philosophy h3{
+
+margin:20px 0;
+font-size:25px;
+
+}
+
+
+.philosophy p{
+
+color:#999;
+line-height:1.6;
+
+}
+
+
+
+
+
+/* NUMBERS */
+
+.stats{
+
+display:flex;
+justify-content:space-between;
+border-top:1px solid #333;
+border-bottom:1px solid #333;
+
+}
+
+
+
+.stat h3{
+
+font-size:70px;
+font-weight:400;
+
+}
+
+
+.stat p{
+
+color:#999;
+
+}
+
+
+
+
+
+/* CONTACT */
+
+.contact{
+
+text-align:center;
+
+}
+
+
+.contact h2{
+
+font-size:clamp(45px,7vw,100px);
+font-weight:400;
+
+}
+
+
+
+.contact a{
+
+display:inline-block;
+margin-top:50px;
+padding:20px 60px;
+border:1px solid white;
+color:white;
+text-decoration:none;
+
+}
+
+
+
+
+/* FOOTER */
+
+
+footer{
+
+padding:60px 7%;
+border-top:1px solid #222;
+display:flex;
+justify-content:space-between;
+color:#888;
+
+}
+
+
+
+
+
+@media(max-width:900px){
+
+
+nav{
+display:none;
+}
+
+
+.projects{
+
+display:block;
+
+}
+
+
+.project,
+.project:nth-child(1),
+.project:nth-child(2),
+.project:nth-child(3){
+
+height:450px;
+margin-bottom:30px;
+
+}
+
+
+.philosophy-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.stats{
+
+display:block;
+
+}
+
+
+.stat{
+
+margin:40px 0;
+
+}
+
+
+}
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+
+<header>
+
+<div class="logo">
+MAGNUM.
+</div>
+
+
+<nav>
+
+<a href="#vision">VISION</a>
+<a href="#projects">PROJETS</a>
+<a href="#expertise">EXPERTISE</a>
+<a href="#contact">CONTACT</a>
+
+</nav>
+
+
+</header>
+
+
+
+
+<section class="hero">
+
+
+<div class="hero-content">
+
+
+<div class="tag">
+PROMOTEUR IMMOBILIER DE PRESTIGE
+</div>
+
+
+<h1>
+Créer des<br>
+héritages.
+</h1>
+
+
+<p>
+Nous imaginons des résidences d'exception
+où architecture, émotion et excellence
+se rencontrent.
+</p>
+
+
+<a class="button">
+Découvrir MAGNUM
+</a>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section id="vision">
+
+
+<h2 class="title">
+Plus qu'un bâtiment.<br>
+Une signature.
+</h2>
+
+
+<p class="description">
+
+MAGNUM développe des projets immobiliers
+uniques destinés à traverser les générations.
+Chaque détail est pensé pour créer une expérience
+rare et intemporelle.
+
+</p>
+
+
+</section>
+
+
+
+
+
+<section id="projects">
+
+
+<h2 class="title">
+Réalisations
+</h2>
+
+
+
+<div class="projects">
+
+
+<div class="project">
+
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+
+<div class="project-info">
+
+<h3>
+Résidence SVJ
+</h3>
+
+<p>
+Luxembourg — Projet Signature
+</p>
+
+</div>
+
+</div>
+
+
+
+
+<div class="project">
+
+<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
+
+<div class="project-info">
+
+<h3>
+Villa Horizon
+</h3>
+
+<p>
+Architecture privée
+</p>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="project">
+
+<img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d">
+
+<div class="project-info">
+
+<h3>
+Collection MAGNUM
+</h3>
+
+<p>
+Résidences exclusives
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section id="expertise" class="philosophy">
+
+
+<h2 class="title">
+Notre méthode
+</h2>
+
+
+
+<div class="philosophy-grid">
+
+
+<div>
+
+<div class="number">
+01
+</div>
+
+<h3>
+Vision
+</h3>
+
+<p>
+Comprendre un lieu avant de créer un projet.
+</p>
+
+</div>
+
+
+
+<div>
+
+<div class="number">
+02
+</div>
+
+<h3>
+Architecture
+</h3>
+
+<p>
+Des lignes pensées avec précision.
+</p>
+
+</div>
+
+
+
+
+<div>
+
+<div class="number">
+03
+</div>
+
+<h3>
+Excellence
+</h3>
+
+<p>
+Une qualité présente dans chaque détail.
+</p>
+
+</div>
+
+
+
+
+<div>
+
+<div class="number">
+04
+</div>
+
+<h3>
+Héritage
+</h3>
+
+<p>
+Créer des espaces qui durent.
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<h3>
+25+
+</h3>
+
+<p>
+Projets réalisés
+</p>
+
+</div>
+
+
+
+<div class="stat">
+
+<h3>
+10
+</h3>
+
+<p>
+Années d'expérience
+</p>
+
+</div>
+
+
+
+
+<div class="stat">
+
+<h3>
+100%
+</h3>
+
+<p>
+Engagement qualité
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section id="contact" class="contact">
+
+
+<h2>
+Votre prochain projet commence ici.
+</h2>
+
+
+<a href="#">
+Prendre contact
+</a>
+
+
+</section>
+
+
+
+
+<footer>
+
+
+<div>
+MAGNUM.
+</div>
+
+
+<div>
+Immobilier d'exception
+</div>
+
+
+</footer>
+
+
+
+
+</body>
+
+</html>
