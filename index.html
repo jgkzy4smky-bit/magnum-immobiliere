@@ -3,282 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAGNUM IMMOBILIÈRE | Haute Couture Immobilière</title>
-    <!-- Fontes Montserrat & Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Icones Premium -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Feuille de style principale -->
+    <title>Navigation Premium</title>
+    <!-- Lien vers le fichier de style externe -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Curseur Personnalisé Fluide -->
-    <div class="custom-cursor" id="cursor"></div>
-    <div class="custom-cursor-follower" id="cursor-follower"></div>
+    <!-- BARRE DE NAVIGATION -->
+    <header class="header-nav">
+        <div class="logo">Magnum</div>
+        
+        <!-- Bouton hamburger sophistiqué -->
+        <button class="hamburger" aria-label="Ouvrir le menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-    <!-- Écran de Préchargement Cinématique -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-wrap">
-            <div class="preloader-brand">MAGNUM</div>
-            <div class="preloader-bar-bg">
-                <div class="preloader-bar" id="preloader-bar"></div>
-            </div>
-            <div class="preloader-counter" id="preloader-counter">00%</div>
-        </div>
-    </div>
-
-    <!-- En-tête de Navigation Dynamique -->
-    <header class="site-header">
-        <div class="header-container">
-            <a href="#" class="brand-logo">
-                MAGNUM<span class="dot">.</span>
-            </a>
-            <div class="menu-trigger" id="menu-toggle">
-                <span class="menu-text">MENU</span>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
+        <!-- Menu principal -->
+        <nav class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item"><a class="nav-link" data-target="programme-neuf">Programme neuf</a></li>
+                
+                <!-- Menu déroulant pour les locaux professionnels -->
+                <li class="nav-item dropdown-toggle">
+                    <span class="nav-link">Locaux professionnels ▾</span>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a data-target="residence">Résidence</a></li>
+                        <li class="dropdown-item"><a data-target="appartement">Appartement</a></li>
+                        <li class="dropdown-item"><a data-target="maison">Maison</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item"><a class="nav-link" data-target="investisseurs">Investisseurs</a></li>
+                <li class="nav-item"><a class="nav-link" data-target="a-propos">À propos</a></li>
+                <li class="nav-item"><a class="nav-link" data-target="contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Menu Plein Écran Tranchant -->
-    <nav class="fullscreen-menu" id="fullscreen-menu">
-        <div class="menu-bg-overlay"></div>
-        <div class="menu-container">
-            <div class="menu-links">
-                <div class="menu-item"><a href="#hero" data-text="ACCUEIL" class="menu-link active">ACCUEIL</a></div>
-                <div class="menu-item"><a href="#collection" data-text="COLLECTION" class="menu-link">COLLECTION</a></div>
-                <div class="menu-item"><a href="#vision" data-text="NOTRE VISION" class="menu-link">NOTRE VISION</a></div>
-                <div class="menu-item"><a href="#contact" data-text="CONTACT" class="menu-link">CONTACT</a></div>
-            </div>
-            <div class="menu-meta">
-                <div class="meta-section">
-                    <h4>BUREAUX</h4>
-                    <p>Luxembourg Ville<br>Boulevard Royal, L-2449</p>
-                </div>
-                <div class="meta-section">
-                    <h4>CONTACT</h4>
-                    <p>contact@wirecore1.webflow.io<br>+352 000 000 000</p>
-                </div>
-                <div class="meta-section social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-x-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- CONTENU DES PAGES DÉDIÉES -->
+    <main class="main-content">
+        
+        <!-- Accueil par défaut -->
+        <section id="accueil" class="page-section active">
+            <h1 class="section-title">Architecture & Immobilier Premium</h1>
+            <p>Veuillez sélectionner une catégorie dans le menu pour découvrir nos projets d'exception.</p>
+        </section>
 
-    <!-- Corps Principal du Site -->
-    <main id="main-scroll">
+        <!-- Page Programme Neuf -->
+        <section id="programme-neuf" class="page-section">
+            <h1 class="section-title">Programme Neuf</h1>
+            <p>Découvrez nos futurs concepts et développements immobiliers en cours.</p>
+        </section>
 
-        <!-- Section Hero Immersive -->
-        <section id="hero" class="hero-section">
-            <div class="hero-bg">
-                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80" alt="Architecture d'Exception" class="parallax-img">
-                <div class="hero-overlay"></div>
-            </div>
-            <div class="hero-content">
-                <div class="hero-title-wrap">
-                    <span class="hero-subtitle reveal-text">DOMAINES D'EXCEPTION</span>
-                    <h1 class="hero-title reveal-text-delayed">L'architecture comme <br>une œuvre <span class="highlight">d'art</span>.</h1>
+        <!-- Page dédiée : Résidence -->
+        <section id="residence" class="page-section">
+            <h1 class="section-title">Résidences d'Affaires</h1>
+            <div class="content-grid">
+                <div class="content-image-wrapper">
+                    <div class="placeholder-visual">Espace Résidence Premium</div>
                 </div>
-                <div class="hero-footer">
-                    <div class="scroll-indicator">
-                        <span class="scroll-line"></span>
-                        <span class="scroll-text">SCROLLEZ POUR DÉCOUVRIR</span>
-                    </div>
-                    <div class="hero-cta">
-                        <a href="#collection" class="btn-primary magnetic-element">
-                            <span>VOIR LA COLLECTION</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
+                <div class="content-text">
+                    <p>Nos complexes résidentiels professionnels intègrent des normes architecturales de premier ordre pour répondre aux exigences des entreprises modernes.</p>
+                    <p>Chaque structure bénéficie de grands espaces ouverts, d'une isolation acoustique de pointe et de technologies de connectivité intégrées, garantissant un environnement à la fois productif et raffiné.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Section Collection / Réalisations -->
-        <section id="collection" class="collection-section">
-            <div class="section-container">
-                <header class="section-header">
-                    <div class="header-left">
-                        <span class="section-tag">PORTFOLIO PRIVÉ</span>
-                        <h2 class="section-title">Réalisations Singulières</h2>
-                    </div>
-                    <div class="header-right">
-                        <p class="section-desc">Une sélection exclusive de propriétés d'architectes conçues pour redéfinir les standards du prestige et offrir une expérience sensorielle inégalée.</p>
-                    </div>
-                </header>
-
-                <div class="property-grid">
-                    <!-- Propriété 1 -->
-                    <div class="property-card" data-speed="1.1">
-                        <div class="property-img-wrap">
-                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Villa Epure">
-                            <div class="property-hover-overlay">
-                                <span class="btn-view-estate"><i class="fa-solid fa-plus"></i> Découvrir</span>
-                            </div>
-                        </div>
-                        <div class="property-info">
-                            <div class="property-header">
-                                <h3 class="property-name">VILLA ÉPURE</h3>
-                                <span class="property-location">Luxembourg Cents</span>
-                            </div>
-                            <div class="property-details">
-                                <span>750 m²</span>
-                                <span class="divider"></span>
-                                <span>Piscine à débordement</span>
-                                <span class="divider"></span>
-                                <span class="price-tag">Sur Demande</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Propriété 2 -->
-                    <div class="property-card" data-speed="0.9">
-                        <div class="property-img-wrap">
-                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" alt="Le Belvédère">
-                            <div class="property-hover-overlay">
-                                <span class="btn-view-estate"><i class="fa-solid fa-plus"></i> Découvrir</span>
-                            </div>
-                        </div>
-                        <div class="property-info">
-                            <div class="property-header">
-                                <h3 class="property-name">LE BELVÉDÈRE</h3>
-                                <span class="property-location">Riviera Française</span>
-                            </div>
-                            <div class="property-details">
-                                <span>1200 m²</span>
-                                <span class="divider"></span>
-                                <span>Vue Panoramique Mer</span>
-                                <span class="divider"></span>
-                                <span class="price-tag highlight">EXCLUSIVITÉ</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Propriété 3 -->
-                    <div class="property-card" data-speed="1.2">
-                        <div class="property-img-wrap">
-                            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80" alt="Pavillon Lumina">
-                            <div class="property-hover-overlay">
-                                <span class="btn-view-estate"><i class="fa-solid fa-plus"></i> Découvrir</span>
-                            </div>
-                        </div>
-                        <div class="property-info">
-                            <div class="property-header">
-                                <h3 class="property-name">PAVILLON LUMINA</h3>
-                                <span class="property-location">Sankt Moritz</span>
-                            </div>
-                            <div class="property-details">
-                                <span>920 m²</span>
-                                <span class="divider"></span>
-                                <span>Design Bioclimatique</span>
-                                <span class="divider"></span>
-                                <span class="price-tag">Sur Demande</span>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Page dédiée : Appartement -->
+        <section id="appartement" class="page-section">
+            <h1 class="section-title">Appartements & Bureaux Exécutifs</h1>
+            <div class="content-grid">
+                <div class="content-image-wrapper">
+                    <div class="placeholder-visual">Design Appartement Exécutif</div>
+                </div>
+                <div class="content-text">
+                    <p>Conçus pour les cadres et les professions libérales, ces appartements offrent une double fonctionnalité alliant espace de vie haut de gamme et bureaux de réception.</p>
+                    <p>Les finitions en matériaux nobles, les vues panoramiques et l'agencement optimisé assurent une clarté et une distinction à la hauteur de vos ambitions professionnelles.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Section Manifeste / Vision -->
-        <section id="vision" class="vision-section">
-            <div class="vision-bg-text">PERFECTION</div>
-            <div class="section-container">
-                <div class="vision-layout">
-                    <div class="vision-left">
-                        <span class="section-tag">MANIFESTE</span>
-                        <h2 class="vision-heading">L'exigence absolue du détail, <br>sans aucun compromis.</h2>
-                        <p class="vision-text text-muted">Chaque projet signé par Magnum Immobilière intègre des technologies durables avancées, des matériaux nobles rigoureusement sélectionnés et une signature architecturale intemporelle.</p>
-                        <div class="metrics-container">
-                            <div class="metric-box">
-                                <div class="metric-num highlight">100%</div>
-                                <div class="metric-label">Sur Mesure</div>
-                            </div>
-                            <div class="metric-box">
-                                <div class="metric-num">B€+</div>
-                                <div class="metric-label">Actifs Développés</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="vision-right">
-                        <div class="vision-image-container">
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Design Intérieur Prestige" class="vision-img">
-                        </div>
-                    </div>
+        <!-- Page dédiée : Maison -->
+        <section id="maison" class="page-section">
+            <h1 class="section-title">Maisons & Sièges Sociaux Particuliers</h1>
+            <div class="content-grid">
+                <div class="content-image-wrapper">
+                    <div class="placeholder-visual">Architecture Maison Individuelle</div>
+                </div>
+                <div class="content-text">
+                    <p>Ces structures individuelles majeures conviennent parfaitement à l'établissement de sièges sociaux prestigieux ou de cabinets privés de premier plan.</p>
+                    <p>Alliant une signature visuelle extérieure forte à une modularité intérieure totale, ces bâtiments d'exception reflètent la solidité et l'élégance de votre image de marque.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Section Conciergerie Privée & Formulaire -->
-        <section id="contact" class="contact-section">
-            <div class="section-container">
-                <div class="contact-wrap">
-                    <div class="contact-header">
-                        <span class="section-tag">CONCIERGERIE PRIVÉE</span>
-                        <h2 class="contact-title">Initiez Votre Projet D'exception</h2>
-                        <p class="contact-subtitle">Entrez en relation avec nos directeurs de projets pour une consultation hautement confidentielle.</p>
-                    </div>
-                    
-                    <form class="contact-form" onsubmit="event.preventDefault();">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">VOTRE NOM COMPLET</label>
-                                <input type="text" id="name" placeholder="Monsieur Jean Dupont" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">ADRESSE E-MAIL DE CONTACT</label>
-                                <input type="email" id="email" placeholder="client@luxury-domain.com" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">VOS ASPIRATIONS ARCHITECTURALES</label>
-                            <textarea id="message" rows="5" placeholder="Décrivez succinctement la nature de votre projet immobilier d'exception..."></textarea>
-                        </div>
-                        <div class="form-submit">
-                            <button type="submit" class="btn-submit magnetic-element">
-                                <span>SOUMETTRE LA DEMANDE</span>
-                                <i class="fa-solid fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <!-- Page Investisseurs -->
+        <section id="investisseurs" class="page-section">
+            <h1 class="section-title">Investisseurs</h1>
+            <p>Solutions de placement et opportunités patrimoniales à haut rendement.</p>
         </section>
 
-        <!-- Pied de page -->
-        <footer class="site-footer">
-            <div class="footer-container">
-                <div class="footer-top">
-                    <div class="footer-brand">MAGNUM.</div>
-                    <div class="footer-nav-links">
-                        <a href="#hero">Accueil</a>
-                        <a href="#collection">Collection</a>
-                        <a href="#vision">Vision</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p class="copyright">&copy; 2026 MAGNUM IMMOBILIÈRE. Tous droits réservés. Réalisation d'Excellence.</p>
-                    <p class="legal-links"><a href="#">Mentions Légales</a><span>|</span><a href="#">Confidentialité</a></p>
-                </div>
-            </div>
-        </footer>
+        <!-- Page À Propos -->
+        <section id="a-propos" class="page-section">
+            <h1 class="section-title">À Propos</h1>
+            <p>Notre savoir-faire et notre philosophie architecturale depuis plus de deux décennies.</p>
+        </section>
+
+        <!-- Page Contact -->
+        <section id="contact" class="page-section">
+            <h1 class="section-title">Contact</h1>
+            <p>Discutons ensemble de vos futurs projets d'envergure.</p>
+        </section>
 
     </main>
 
-    <!-- Moteurs d'Animations Fluides (GSAP & ScrollTrigger) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Contrôleur d'Interactions -->
+    <!-- Lien vers le fichier de script externe -->
     <script src="script.js"></script>
 </body>
 </html>
