@@ -3,133 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magnum Immobilière | Immobilier d'Exception</title>
+    <title>Magnum | Haute Couture Immobilière</title>
+    <!-- Importation des typographies Premium : Montserrat & Syne (pour les titres) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Syne:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- BARRE DE NAVIGATION PREMIUM -->
+    <!-- Curseur Matrice Awwwards -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+
+    <!-- ÉCRAN DE CHARGEMENT HAUTE COUTURE -->
+    <div class="preloader">
+        <div class="preloader-wrap">
+            <div class="preloader-text">MAGNUM IMMOBILIÈRE</div>
+            <div class="preloader-bar"></div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION PRINCIPALE -->
     <header class="header-nav">
-        <div class="logo" data-target="accueil">Magnum<span>Immobilière</span></div>
+        <div class="logo magnetic" data-target="accueil">
+            M<span>.</span>
+        </div>
         
-        <!-- Hamburger Métamorphique -->
-        <button class="hamburger" aria-label="Menu Principal">
-            <span></span>
-            <span></span>
-            <span></span>
+        <!-- Hamburger Sophistiqué Déstructuré -->
+        <button class="hamburger magnetic" aria-label="Menu">
+            <span class="line-top"></span>
+            <span class="line-bottom"></span>
         </button>
 
-        <!-- Navigation principale -->
         <nav class="nav-container">
             <ul class="nav-menu">
-                <li class="nav-item"><a class="nav-link" data-target="programme-neuf">Programme neuf</a></li>
-                
-                <!-- Menu déroulant complexe -->
+                <li class="nav-item"><a class="nav-link magnetic" data-target="programme-neuf">Programme neuf</a></li>
                 <li class="nav-item dropdown-toggle">
-                    <span class="nav-link">Locaux professionnels ▾</span>
+                    <span class="nav-link magnetic">Locaux professionnels <span class="yellow-dot">•</span></span>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item"><a data-target="residence">Résidences</a></li>
                         <li class="dropdown-item"><a data-target="appartement">Appartements Exécutifs</a></li>
-                        <li class="dropdown-item"><a data-target="maison">Maisons & Sièges</a></li>
+                        <li class="dropdown-item"><a data-target="maison">Maisons d'Architecte</a></li>
                     </ul>
                 </li>
-                
-                <li class="nav-item"><a class="nav-link" data-target="investisseurs">Investisseurs</a></li>
-                <li class="nav-item"><a class="nav-link" data-target="a-propos">À propos</a></li>
-                <li class="nav-item"><a class="nav-link" data-target="contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link magnetic" data-target="investisseurs">Investisseurs</a></li>
+                <li class="nav-item"><a class="nav-link magnetic" data-target="a-propos">À propos</a></li>
+                <li class="nav-item"><a class="nav-link magnetic" data-target="contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- ZONE DE CONTENU PRINCIPALE -->
+    <!-- ZONE DE CONTENU IMMERSIF -->
     <main class="main-content">
         
-        <!-- SECTION 1 : ACCUEIL & HERO HAUT DE GAMME -->
+        <!-- 1. ACCUEIL (HERO INTERACTIF) -->
         <section id="accueil" class="page-section active">
-            <div class="hero-container">
-                <div class="hero-badge">Collection Privée 2026</div>
-                <h1 class="hero-title">L'architecture comme signature, <br>l'excellence comme norme.</h1>
-                <p class="hero-subtitle">Conception et intégration d'espaces immobiliers haut de gamme et de locaux professionnels d'exception.</p>
-                <button class="btn-premium" data-target="programme-neuf">Découvrir les projets</button>
+            <div class="hero-wrapper">
+                <div class="hero-meta reveal-text">MODERN ARCHITECTURE</div>
+                <h1 class="hero-title reveal-text">
+                    Des volumes uniques pour des esprits <span class="highlight-yellow">d'exception.</span>
+                </h1>
+                <p class="hero-description reveal-text">
+                    <!-- ÉDITABLE : Description principale d'accueil -->
+                    Une approche confidentielle du patrimoine immobilier haut de gamme. Conçu exclusivement pour ceux qui exigent la perfection spatiale et matérielle.
+                </p>
+                <div class="hero-action reveal-text">
+                    <button class="btn-premium magnetic" data-target="programme-neuf">
+                        <span>Explorer la collection</span>
+                    </button>
+                </div>
             </div>
         </section>
 
-        <!-- SECTION 2 : PROGRAMME NEUF -->
+        <!-- 2. PROGRAMME NEUF (GRILLE INTERACTIVE 3D) -->
         <section id="programme-neuf" class="page-section">
-            <h2 class="section-title">Programmes Neufs</h2>
-            <p class="section-intro">Découvrez nos futurs concepts architecturaux et développements immobiliers durables en cours de réalisation.</p>
+            <div class="section-header">
+                <span class="section-number">[01]</span>
+                <h2 class="section-title">Programmes Neufs</h2>
+            </div>
+            
             <div class="showcase-grid">
-                <div class="showcase-card">
-                    <div class="card-image-placeholder">Projet Horizon — Lux</div>
-                    <h3>Lignes Minimalistes</h3>
-                    <p>Intégration d'acier brossé et de surfaces vitrées thermorégulées.</p>
+                <!-- ÉDITABLE : Carte Projet 1 -->
+                <div class="project-card 3d-effect">
+                    <div class="card-image-box">
+                        <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80');"></div>
+                        <div class="card-overlay"></div>
+                        <span class="project-badge">Luxembourg-Ville</span>
+                    </div>
+                    <div class="card-info">
+                        <h3>Projet KRYPTON</h3>
+                        <p>Lignes pures, béton brut et intégration verrière sans cadre.</p>
+                    </div>
                 </div>
-                <div class="showcase-card">
-                    <div class="card-image-placeholder">Le Domaine — Premium</div>
-                    <h3>Espaces Connectés</h3>
-                    <p>Domotique avancée et optimisation énergétique passive.</p>
+
+                <!-- ÉDITABLE : Carte Projet 2 -->
+                <div class="project-card 3d-effect">
+                    <div class="card-image-box">
+                        <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80');"></div>
+                        <div class="card-overlay"></div>
+                        <span class="project-badge">Premium Collection</span>
+                    </div>
+                    <div class="card-info">
+                        <h3>Le Pavillon Noir</h3>
+                        <p>Domotique invisible et volumes suspendus en apesanteur visuelle.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3 : DÉDIÉE RÉSIDENCE -->
+        <!-- 3. PAGE DÉDIÉE : RÉSIDENCE -->
         <section id="residence" class="page-section">
-            <h2 class="section-title">Résidences d'Affaires</h2>
-            <div class="content-grid">
-                <div class="content-image-wrapper">
-                    <div class="placeholder-visual">Espace Résidentiel Affaires</div>
+            <div class="section-header">
+                <span class="section-number">[02.A]</span>
+                <h2 class="section-title">Résidences d'Affaires</h2>
+            </div>
+            <div class="split-layout">
+                <div class="split-image 3d-effect">
+                    <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80');"></div>
                 </div>
-                <div class="content-text">
-                    <p>Nos complexes résidentiels professionnels intègrent des normes architecturales de premier ordre pour répondre aux exigences des entreprises modernes.</p>
-                    <p>Chaque structure bénéficie de grands espaces ouverts, d'une isolation acoustique de pointe et de technologies de connectivité intégrées, garantissant un environnement à la fois productif et raffiné.</p>
+                <div class="split-details">
+                    <span class="detail-tag">Workspace haut de gamme</span>
+                    <!-- ÉDITABLE : Texte explicatif Résidences -->
+                    <p class="premium-paragraph">Nos complexes résidentiels redéfinissent les standards du voyage d'affaires et de l'implantation corporate de prestige.</p>
+                    <p class="premium-paragraph muted">Matériaux nobles sourcés de manière éco-responsable, acoustique absolue inférieure à 20dB, et espaces modulaires configurés pour la haute performance décisionnelle.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 4 : DÉDIÉE APPARTEMENT -->
+        <!-- 4. PAGE DÉDIÉE : APPARTEMENT -->
         <section id="appartement" class="page-section">
-            <h2 class="section-title">Appartements & Bureaux Exécutifs</h2>
-            <div class="content-grid">
-                <div class="content-image-wrapper">
-                    <div class="placeholder-visual">Design Intérieur Exécutif</div>
+            <div class="section-header">
+                <span class="section-number">[02.B]</span>
+                <h2 class="section-title">Appartements Exécutifs</h2>
+            </div>
+            <div class="split-layout reverse">
+                <div class="split-details">
+                    <span class="detail-tag">Penthouse & Esthétique</span>
+                    <!-- ÉDITABLE : Texte explicatif Appartements -->
+                    <p class="premium-paragraph">Des sanctuaires urbains suspendus au-dessus du tumulte des métropoles.</p>
+                    <p class="premium-paragraph muted">Chaque appartement exécutif propose des hauteurs sous plafond monumentales, des terrasses panoramiques chauffées par le sol et des salons de réception privatifs.</p>
                 </div>
-                <div class="content-text">
-                    <p>Conçus pour les cadres et les professions libérales, ces appartements offrent une double fonctionnalité alliant espace de vie haut de gamme et bureaux de réception.</p>
-                    <p>Les finitions en matériaux nobles, les vues panoramiques et l'agencement optimisé assurent une clarté et une distinction à la hauteur de vos ambitions professionnelles.</p>
+                <div class="split-image 3d-effect">
+                    <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80');"></div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 5 : DÉDIÉE MAISON -->
+        <!-- 5. PAGE DÉDIÉE : MAISON -->
         <section id="maison" class="page-section">
-            <h2 class="section-title">Maisons & Sièges Sociaux</h2>
-            <div class="content-grid">
-                <div class="content-image-wrapper">
-                    <div class="placeholder-visual">Architecture Institutionnelle</div>
+            <div class="section-header">
+                <span class="section-number">[02.C]</span>
+                <h2 class="section-title">Maisons d'Architecte</h2>
+            </div>
+            <div class="split-layout">
+                <div class="split-image 3d-effect">
+                    <div class="placeholder-img" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80');"></div>
                 </div>
-                <div class="content-text">
-                    <p>Ces structures individuelles majeures conviennent parfaitement à l'établissement de sièges sociaux prestigieux ou de cabinets privés de premier plan.</p>
-                    <p>Alliant une signature visuelle extérieure forte à une modularité intérieure totale, ces bâtiments d'exception reflètent la solidité et l'élégance de votre image de marque.</p>
+                <div class="split-details">
+                    <span class="detail-tag">Sièges Privés & Domaines</span>
+                    <!-- ÉDITABLE : Texte explicatif Maisons -->
+                    <p class="premium-paragraph">L'osmose totale entre nature sauvage et architecture géométrique ultra-moderne.</p>
+                    <p class="premium-paragraph muted">Conçues par des signatures internationales majeures, nos villas et structures individuelles représentent le sommet absolu de l'expression patrimoniale privée.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 6 : INVESTISSEURS -->
+        <!-- 6. INVESTISSEURS -->
         <section id="investisseurs" class="page-section">
-            <h2 class="section-title">Solutions Investisseurs</h2>
-            <p class="section-intro">Stratégies de placement, optimisation patrimoniale et opportunités de rendement sur des actifs premium.</p>
+            <div class="section-header">
+                <span class="section-number">[03]</span>
+                <h2 class="section-title">Club Investisseurs</h2>
+            </div>
+            <div class="investment-panel">
+                <div class="stat-box">
+                    <div class="stat-number count-up" data-value="2.4">0.0</div>
+                    <div class="stat-label">Milliards d'actifs gérés</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number count-up" data-value="14.8">0.0</div>
+                    <div class="stat-label">Rendement moyen ciblé %</div>
+                </div>
+            </div>
         </section>
 
-        <!-- SECTION 7 : À PROPOS -->
+        <!-- 7. À PROPOS -->
         <section id="a-propos" class="page-section">
-            <h2 class="section-title">Notre Philosophie</h2>
-            <p class="section-intro">Depuis plus de deux décennies, nous concevons des espaces où le design minimaliste rencontre la fonctionnalité absolue.</p>
+            <div class="section-header">
+                <span class="section-number">[04]</span>
+                <h2 class="section-title">Manifeste & Vision</h2>
+            </div>
+            <div class="about-wrap">
+                <!-- ÉDITABLE : Texte À Propos -->
+                <p class="large-manifesto">Nous ne construisons pas des bâtiments. Nous matérialisons des repères intemporels. Inspirés par le minimalisme structural et guidés par l'exigence d'une élite internationale.</p>
+            </div>
         </section>
 
-        <!-- SECTION 8 : CONTACT -->
+        <!-- 8. CONTACT -->
         <section id="contact" class="page-section">
-            <h2 class="section-title">貴賓 Contact Privé</h2>
-            <p class="section-intro">Discutons ensemble de vos futurs projets d'envergure architecturale.</p>
+            <div class="section-header">
+                <span class="section-number">[05]</span>
+                <h2 class="section-title">Relations Privées</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-meta">
+                    <p>Accès exclusif sur rendez-vous ou par parrainage uniquement.</p>
+                    <div class="contact-email">cabinet@magnum-immobiliere.club</div>
+                </div>
+                <form class="premium-form" onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <input type="text" placeholder="VOTRE NOM ET PRÉNOM" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="ADRESSE EMAIL CONFIDENTIELLE" required>
+                    </div>
+                    <button type="submit" class="btn-submit magnetic"><span>Solliciter un entretien</span></button>
+                </form>
+            </div>
         </section>
 
     </main>
