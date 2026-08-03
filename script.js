@@ -1,65 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. GESTION SUPPRESSION PRELOADER ---
+    // --- 1. EXPULSION DU PRÉCHARGEUR PRESTIGE ---
     const preloader = document.querySelector('.preloader');
     window.addEventListener('load', () => {
         setTimeout(() => {
             preloader.style.transform = 'translateY(-100%)';
-        }, 2200); // Laisse l'animation de barre premium se terminer
+        }, 2000); 
     });
 
-    // --- 2. CODE CURSEUR MATRICE HAUTE PRÉCISION ---
+    // --- 2. LOGIQUE DU CURSEUR CINÉTIQUE ---
     const cursor = document.querySelector('.custom-cursor');
     const cursorDot = document.querySelector('.custom-cursor-dot');
     
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
 
     document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        // Effet immédiat pour le point central
-        cursorDot.style.left = `${mouseX}px`;
-        cursorDot.style.top = `${mouseY}px`;
+        targetX = e.clientX;
+        targetY = e.clientY;
+        
+        cursorDot.style.left = `${targetX}px`;
+        cursorDot.style.top = `${targetY}px`;
     });
 
-    // Inertie fluide (lag) sur l'anneau extérieur du curseur pour l'effet Awwwards
-    function animateCursor() {
-        let distX = mouseX - cursorX;
-        let distY = mouseY - cursorY;
+    // Interpolation linéaire pour fluidifier le mouvement de l'anneau externe
+    function updateCursorPosition() {
+        let diffX = targetX - currentX;
+        let diffY = targetY - currentY;
         
-        cursorX = cursorX + (distX * 0.15);
-        cursorY = cursorY + (distY * 0.15);
+        currentX += diffX * 0.12;
+        currentY += diffY * 0.12;
         
-        cursor.style.left = `${cursorX}px`;
-        cursor.style.top = `${cursorY}px`;
+        cursor.style.left = `${currentX}px`;
+        cursor.style.top = `${currentY}px`;
         
-        requestAnimationFrame(animateCursor);
+        requestAnimationFrame(updateCursorPosition);
     }
-    animateCursor();
+    updateCursorPosition();
 
-    // Interaction du curseur sur les éléments "Magnetic" et liens
-    const interactives = document.querySelectorAll('.magnetic, .nav-link, .project-card, input, button');
-    interactives.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+    // Activation des interactions visuelles au survol des zones tactiques
+    const interactiveElements = document.querySelectorAll('.magnetic, .menu-link, .submenu-link, .showcase-item, input, textarea, button');
+    interactiveElements.forEach(item => {
+        item.addEventListener('mouseenter', () => cursor.classList.add('active-hover'));
+        item.addEventListener('mouseleave', () => cursor.classList.remove('active-hover'));
     });
 
-    // --- 3. EFFET INTERACTIF HAUT DE GAMME : 3D CARD PARALLAX ---
-    const cards3D = document.querySelectorAll('.3d-effect');
+    // --- 3. MOTEUR D'INCLINAISON ET PARALLAXE 3D ---
+    const cards3D = document.querySelectorAll('.card-3d-engine');
     cards3D.forEach(card => {
         card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const boundary = card.getBoundingClientRect();
+            const mouseInsideX = e.clientX - boundary.left;
+            const mouseInsideY = e.clientY - boundary.top;
             
-            // Calcul de l'inclinaison angulaire
-            const xc = rect.width / 2;
-            const yc = rect.height / 2;
-            const angleX = (yc - y) / 20; // Sensibilité verticale
-            const angleY = (x - xc) / 20; // Sensibilité horizontale
+            const centerPointX = boundary.width / 2;
+            const centerPointY = boundary.height / 2;
             
-            card.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.01)`;
+            // Angulation de distorsion 3D proportionnelle
+            const rotationX = (centerPointY - mouseInsideY) / 25; 
+            const rotationY = (mouseInsideX - centerPointX) / 25; 
+            
+            card.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg) scale(1.02)`;
         });
 
         card.addEventListener('mouseleave', () => {
@@ -67,78 +68,86 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 4. ENGINE ROUTING DES SECTIONS ET ANIMATIONS DE TEXTE ---
-    const hamburger = document.querySelector('.hamburger');
-    const navContainer = document.querySelector('.nav-container');
-    const dropdownToggle = document.querySelector('.dropdown-toggle');
-    const routerLinks = document.querySelectorAll('[data-target]');
-    const sections = document.querySelectorAll('.page-section');
+    // --- 4. GESTION DU ROUTAGE INTERNE SYNCHRONE SANS RECHARGEMENT ---
+    const menuTrigger = document.querySelector('.menu-trigger');
+    const fullscreenMenu = document.querySelector('.fullscreen-menu');
+    const hasSubmenu = document.querySelector('.has-submenu');
+    const routingLinks = document.querySelectorAll('[data-target]');
+    const allSections = document.querySelectorAll('.view-section');
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navContainer.classList.toggle('active');
+    // Ouverture / Fermeture Menu Rideau
+    menuTrigger.addEventListener('click', () => {
+        menuTrigger.classList.toggle('active');
+        fullscreenMenu.classList.toggle('open');
     });
 
-    dropdownToggle.addEventListener('click', () => {
-        dropdownToggle.classList.toggle('mobile-expanded');
-    });
-
-    routerLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+    // Déploiement du sous-menu sur terminaux tactiles et clics
+    if(hasSubmenu) {
+        hasSubmenu.addEventListener('click', (e) => {
             e.stopPropagation();
-            const targetId = link.getAttribute('data-target');
+            hasSubmenu.classList.toggle('expanded');
+        });
+    }
+
+    // Gestion de l'affichage sélectif des sections
+    routingLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             
-            if (targetId) {
-                sections.forEach(sec => {
-                    sec.classList.remove('active');
+            const targetSectionId = link.getAttribute('data-target');
+            const targetSection = document.getElementById(targetSectionId);
+            
+            if (targetSection) {
+                // Extinction globale des sections actives
+                allSections.forEach(sec => sec.classList.remove('active'));
+                
+                // Activation de la section demandée
+                targetSection.classList.add('active');
+                
+                // Relance automatique des animations internes d'apparition (Reset CSS trigger)
+                const elementsToAnimate = targetSection.querySelectorAll('.reveal-element');
+                elementsToAnimate.forEach(el => {
+                    el.style.animation = 'none';
+                    el.offsetHeight; // Déclenchement forcé du reflow pour réinitialiser le cycle
+                    el.style.animation = null;
                 });
 
-                const destination = document.getElementById(targetId);
-                if (destination) {
-                    destination.classList.add('active');
-                    
-                    // Relance l'effet d'apparition de texte Apple-style
-                    const textElements = destination.querySelectorAll('.reveal-text');
-                    textElements.forEach(el => {
-                        el.style.animation = 'none';
-                        el.offsetHeight; // Trigger reflow CSS
-                        el.style.animation = null;
-                    });
-
-                    // Si la section contient des compteurs digitaux
-                    if(targetId === 'investisseurs') {
-                        triggerCounters(destination);
-                    }
-
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Activation spécifique du module de compteurs numériques
+                if (targetSectionId === 'club-investisseurs') {
+                    executeDigitalCounters(targetSection);
                 }
 
-                // Fermeture des menus
-                hamburger.classList.remove('active');
-                navContainer.classList.remove('active');
-                dropdownToggle.classList.remove('mobile-expanded');
+                // Retour immédiat et fluide au sommet de la nouvelle vue
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+
+            // Fermeture systématique des structures de navigation suite au clic
+            menuTrigger.classList.remove('active');
+            fullscreenMenu.classList.remove('open');
+            if(hasSubmenu) hasSubmenu.classList.remove('expanded');
         });
     });
 
-    // --- 5. COMPTEUR NUMÉRIQUE PROGRESSIF ACCÉLÉRÉ ---
-    function triggerCounters(parentSection) {
-        const counters = parentSection.querySelectorAll('.count-up');
+    // --- 5. MODULE DE PROGRESSION COMPTEUR NUMÉRIQUE SANS COMPRESSION ---
+    function executeDigitalCounters(sectionParent) {
+        const counters = sectionParent.querySelectorAll('.animate-digits');
         counters.forEach(counter => {
             counter.innerText = '0.0';
-            const targetValue = parseFloat(counter.getAttribute('data-value'));
-            let currentValue = 0.0;
-            const increment = targetValue / 40; // Vitesse de la progression
+            const endValue = parseFloat(counter.getAttribute('data-target-value'));
+            let activeValue = 0.0;
+            const steps = 50; 
+            const stepIncrement = endValue / steps;
             
-            const updateCounter = () => {
-                if(currentValue < targetValue) {
-                    currentValue += increment;
-                    if(currentValue > targetValue) currentValue = targetValue;
-                    counter.innerText = currentValue.toFixed(1);
-                    setTimeout(updateCounter, 25);
+            const runCounterAnimation = () => {
+                if (activeValue < endValue) {
+                    activeValue += stepIncrement;
+                    if (activeValue > endValue) activeValue = endValue;
+                    counter.innerText = activeValue.toFixed(1);
+                    setTimeout(runCounterAnimation, 30);
                 }
             };
-            updateCounter();
+            runCounterAnimation();
         });
     }
 });
