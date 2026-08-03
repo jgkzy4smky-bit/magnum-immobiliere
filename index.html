@@ -3,260 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magnum Immobilière | Haute Architecture</title>
-    <!-- Typographies Exclusives : Montserrat pour le corps, Syne pour l'impact Awwwards -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+    <title>Magnum Immobilière</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Système de curseur liquide bi-composant -->
-    <div class="custom-cursor"></div>
-    <div class="custom-cursor-dot"></div>
-
-    <!-- Préchargeur Cinétique Haut de Gamme -->
-    <div class="preloader">
-        <div class="preloader-content">
-            <span class="preloader-brand">MAGNUM</span>
-            <div class="preloader-track">
-                <div class="preloader-progress"></div>
-            </div>
-            <span class="preloader-status">COLLECTION PRIVÉE 2026</span>
-        </div>
-    </div>
-
-    <!-- Navigation Structurelle Apple-Style -->
-    <header class="main-header">
-        <a href="#" class="brand-logo magnetic" data-target="accueil">
-            M<span class="dot-accent">.</span>
-        </a>
+    <!-- EN-TÊTE FIXE -->
+    <header class="navbar">
+        <a href="#" class="logo">M<span>.</span></a>
         
-        <button class="menu-trigger magnetic" aria-label="Ouvrir le menu">
-            <span class="bar-top"></span>
-            <span class="bar-bottom"></span>
+        <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
         </button>
-
-        <nav class="fullscreen-menu">
-            <div class="menu-inner">
-                <ul class="nav-links">
-                    <li><a href="#" class="menu-link magnetic" data-target="accueil">Accueil</a></li>
-                    <li><a href="#" class="menu-link magnetic" data-target="programme-neuf">Programmes Neufs</a></li>
-                    <li class="has-submenu">
-                        <span class="menu-link static">Locaux Professionnels <span class="badge-new">•</span></span>
-                        <ul class="submenu">
-                            <li><a href="#" class="submenu-link" data-target="residences-affaires">Résidences d'Affaires</a></li>
-                            <li><a href="#" class="submenu-link" data-target="appartements-executifs">Appartements Exécutifs</a></li>
-                            <li><a href="#" class="submenu-link" data-target="maisons-architecte">Maisons d'Architecte</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#" class="menu-link magnetic" data-target="club-investisseurs">Club Investisseurs</a></li>
-                    <li><a href="#" class="menu-link magnetic" data-target="manifeste-vision">Manifeste & Vision</a></li>
-                    <li><a href="#" class="menu-link magnetic" data-target="relations-privees">Relations Privées</a></li>
-                </ul>
-                <div class="menu-footer">
-                    <p>En liaison exclusive avec Wirecore Agent</p>
-                    <p>Luxembourg-Ville</p>
-                </div>
-            </div>
-        </nav>
     </header>
 
-    <!-- Écosystème de Pages Dynamiques -->
-    <main class="viewport-wrapper">
+    <!-- MENU OVERLAY PLEIN ÉCRAN -->
+    <nav class="nav-overlay" id="navOverlay">
+        <ul class="nav-links">
+            <li><a href="#collection">Collection</a></li>
+            <li><a href="#agence">L'Agence</a></li>
+            <li><a href="#club">Club Investisseurs</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-        <!-- SECTION 1 : ACCUEIL (HERO MONUMENTAL) -->
-        <section id="accueil" class="view-section active">
-            <div class="hero-container">
-                <div class="meta-tag reveal-element">ESTHÉTIQUE RADICALE</div>
-                <h1 class="hero-main-title reveal-element">
-                    Des volumes uniques pour des esprits <span class="text-yellow">d'exception.</span>
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- SECTION HERO -->
+        <section class="hero" id="collection">
+            <div class="hero-content">
+                <span class="hero-tagline">ESTHÉTIQUE RADICALE</span>
+                <h1 class="hero-title">
+                    Des volumes uniques pour des esprits <span class="highlight">d'exception.</span>
                 </h1>
-                <p class="hero-text reveal-element">
-                    Une approche confidentielle et sur-mesure du patrimoine immobilier d'élite. Nous façonnons des espaces hors du temps pour une clientèle qui refuse le conventionnel.
+                <p class="hero-subtitle">
+                    Une approche confidentielle et sur-mesure du patrimoine immobilier d'élite. 
+                    Nous façonnons des espaces hors du temps pour une clientèle qui refuse le conventionnel.
                 </p>
-                <div class="hero-cta-box reveal-element">
-                    <button class="btn-ux-premium magnetic" data-target="programme-neuf">
-                        <span>Découvrir la collection</span>
-                    </button>
-                </div>
+                <a href="#agence" class="btn-hero" id="heroBtn">DÉCOUVRIR LA COLLECTION</a>
             </div>
         </section>
-
-        <!-- SECTION 2 : PROGRAMMES NEUFS (GALERIE INTERACTIVE 3D) -->
-        <section id="programme-neuf" class="view-section">
-            <div class="container-fluid">
-                <div class="section-indicator">
-                    <span class="index-num">[01]</span>
-                    <h2 class="index-title">Collections Neuves</h2>
-                </div>
-                
-                <div class="showcase-3d-grid">
-                    <!-- Carte 1 -->
-                    <div class="showcase-item card-3d-engine">
-                        <div class="image-container">
-                            <div class="surface-img" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80');"></div>
-                            <div class="card-gradient"></div>
-                            <span class="location-badge">Luxembourg</span>
-                        </div>
-                        <div class="item-meta">
-                            <h3>L'Édition Krypton</h3>
-                            <p>Béton brut, structures monolithiques suspendues et vitrages structurels sans raccords apparents.</p>
-                        </div>
-                    </div>
-
-                    <!-- Carte 2 -->
-                    <div class="showcase-item card-3d-engine">
-                        <div class="image-container">
-                            <div class="surface-img" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80');"></div>
-                            <div class="card-gradient"></div>
-                            <span class="location-badge">Cote d'Azur</span>
-                        </div>
-                        <div class="item-meta">
-                            <h3>Le Prisme Noir</h3>
-                            <p>Intégration technologique invisible, lignes géométriques acérées et bassins à débordement inversés.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3 : RÉSIDENCES D'AFFAIRES -->
-        <section id="residences-affaires" class="view-section">
-            <div class="container-fluid">
-                <div class="section-indicator">
-                    <span class="index-num">[02.A]</span>
-                    <h2 class="index-title">Espaces Corporate</h2>
-                </div>
-                <div class="split-viewport">
-                    <div class="split-visual card-3d-engine">
-                        <div class="surface-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80');"></div>
-                    </div>
-                    <div class="split-content-box">
-                        <span class="uppercase-tag">Haute Performance</span>
-                        <h3 class="split-title">L'immobilier comme levier d'influence.</h3>
-                        <p class="paragraph-premium">Nos complexes de bureaux et résidences d'affaires redéfinissent les standards des infrastructures stratégiques pour les multinationales et family offices.</p>
-                        <p class="paragraph-premium dark-muted">Isolation acoustique absolue en dessous de 18 décibels, purification d'air active de grade médical et configurations modulaires pour conseils d'administration confidentiels.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4 : APPARTEMENTS EXÉCUTIFS -->
-        <section id="appartements-executifs" class="view-section">
-            <div class="container-fluid">
-                <div class="section-indicator">
-                    <span class="index-num">[02.B]</span>
-                    <h2 class="index-title">Penthouses Urbains</h2>
-                </div>
-                <div class="split-viewport reverse-layout">
-                    <div class="split-content-box">
-                        <span class="uppercase-tag">Hauteurs Monumentales</span>
-                        <h3 class="split-title">Prendre de la hauteur sur le monde.</h3>
-                        <p class="paragraph-premium">Des sanctuaires suspendus au-dessus des centres névralgiques mondiaux, mariant panoramas cinématographiques et intimité totale.</p>
-                        <p class="paragraph-premium dark-muted">Hauteurs sous plafond exclusives de 4,5 mètres, accès par ascenseurs biométriques sécurisés et terrasses chauffées structurelles en porte-à-faux total.</p>
-                    </div>
-                    <div class="split-visual card-3d-engine">
-                        <div class="surface-img" style="background-image: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80');"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 5 : MAISONS D'ARCHITECTE -->
-        <section id="maisons-architecte" class="view-section">
-            <div class="container-fluid">
-                <div class="section-indicator">
-                    <span class="index-num">[02.C]</span>
-                    <h2 class="index-title">Domaines Privés</h2>
-                </div>
-                <div class="split-viewport">
-                    <div class="split-visual card-3d-engine">
-                        <div class="surface-img" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80');"></div>
-                    </div>
-                    <div class="split-content-box">
-                        <span class="uppercase-tag">Signatures Internationales</span>
-                        <h3 class="split-title">La symbiose du brut et de la nature.</h3>
-                        <p class="paragraph-premium">Créations uniques signées par les figures les plus radicales de l'architecture contemporaine. Chaque villa est une sculpture habitable unique au monde.</p>
-                        <p class="paragraph-premium dark-muted">Sourcing millimétrique de marbres de carrières privées, intégration paysagère invisible et systèmes de sécurité périmétrique autonomes intégrés à l'environnement.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 6 : CLUB INVESTISSEURS (INTERACTIF CYBER) -->
-        <section id="club-investisseurs" class="view-section">
-            <div class="container-fluid">
-                <div class="section-indicator">
-                    <span class="index-num">[03]</span>
-                    <h2 class="index-title">Fonds & Rendements</h2>
-                </div>
-                <div class="cyber-metrics-wrapper">
-                    <div class="metric-card">
-                        <div class="metric-value animate-digits" data-target-value="3.8">0.0</div>
-                        <div class="metric-title">Milliards d'actifs sous gestion private equity</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value animate-digits" data-target-value="16.4">0.0</div>
-                        <div class="metric-title">Taux de rendement interne historique moyen (TRI)</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 7 : MANIFESTE & VISION -->
-        <section id="manifeste-vision" class="view-section">
-            <div class="container-fluid">
-                <div class="section-indicator">
-                    <span class="index-num">[04]</span>
-                    <h2 class="index-title">Notre Philosophie</h2>
-                </div>
-                <div class="manifesto-inner">
-                    <blockquote class="giant-manifesto-text">
-                        "Nous ne construisons pas des espaces pour habiter. Nous concevons des œuvres monumentales hautement pérennes pour figer votre héritage dans le marbre et l'acier."
-                    </blockquote>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 8 : RELATIONS PRIVÉES (FORMULAIRE CHRAGÉ DE SENS) -->
-        <section id="relations-privees" class="view-section">
-            <div class="container-fluid">
-                <div class="section-indicator">
-                    <span class="index-num">[05]</span>
-                    <h2 class="index-title">Accès Confidentiel</h2>
-                </div>
-                <div class="contact-grid">
-                    <div class="contact-side-info">
-                        <p class="contact-notice">L'admission au catalogue off-market s'effectue exclusivement sur recommandation ou accréditation vérifiée.</p>
-                        <a href="mailto:lwilzius@icloud.com" class="direct-mail-link magnetic">lwilzius@icloud.com</a>
-                    </div>
-                    
-                    <form class="luxury-form" onsubmit="event.preventDefault();">
-                        <div class="input-row">
-                            <input type="text" id="client-name" required autocomplete="off">
-                            <label for="client-name">VOTRE IDENTITÉ COMPLÈTE</label>
-                            <span class="input-line"></span>
-                        </div>
-                        <div class="input-row">
-                            <input type="email" id="client-mail" required autocomplete="off">
-                            <label for="client-mail">COORDONNÉES SÉCURISÉES</label>
-                            <span class="input-line"></span>
-                        </div>
-                        <div class="input-row">
-                            <textarea id="client-notes" rows="1" required></textarea>
-                            <label for="client-notes">NATURE DU PROJET & CONFIGURATION SOUHAITÉE</label>
-                            <span class="input-line"></span>
-                        </div>
-                        <button type="submit" class="btn-ux-premium magnetic">
-                            <span>Initier la liaison</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <script src="script.js"></script>
