@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magnum Immobilière</title>
+    <!-- Importation de la police Montserrat (variantes ultra-fines 100, 200, 300) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- EN-TÊTE FIXE -->
+    <!-- BARRE DE NAVIGATION FIXE -->
     <header class="navbar">
         <a href="#" class="logo">M<span>.</span></a>
         
+        <!-- Bouton Hamburger Moderne -->
         <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
     </header>
 
-    <!-- MENU OVERLAY PLEIN ÉCRAN -->
+    <!-- MENU PLEIN ÉCRAN DÉROULANT / OVERLAY -->
     <nav class="nav-overlay" id="navOverlay">
         <ul class="nav-links">
             <li><a href="#collection">Collection</a></li>
@@ -27,24 +30,6 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-
-    <!-- MAIN CONTENT -->
-    <main>
-        <!-- SECTION HERO -->
-        <section class="hero" id="collection">
-            <div class="hero-content">
-                <span class="hero-tagline">ESTHÉTIQUE RADICALE</span>
-                <h1 class="hero-title">
-                    Des volumes uniques pour des esprits <span class="highlight">d'exception.</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Une approche confidentielle et sur-mesure du patrimoine immobilier d'élite. 
-                    Nous façonnons des espaces hors du temps pour une clientèle qui refuse le conventionnel.
-                </p>
-                <a href="#agence" class="btn-hero" id="heroBtn">DÉCOUVRIR LA COLLECTION</a>
-            </div>
-        </section>
-    </main>
 
     <script src="script.js"></script>
 </body>
