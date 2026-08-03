@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAGNUM | Promoteur immobilier premium</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#080808;
+color:white;
+}
+
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:30px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:10;
+background:linear-gradient(#000,transparent);
+}
+
+
+.logo{
+font-size:30px;
+letter-spacing:5px;
+font-weight:bold;
+}
+
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:35px;
+font-size:15px;
+}
+
+
+.hero{
+
+height:100vh;
+
+background:
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.75)
+),
+url("https://images.unsplash.com/photo-1600607688969-a5bfcd646154")
+center/cover;
+
+display:flex;
+align-items:center;
+
+padding:8%;
+
+}
+
+
+.hero h1{
+
+font-size:clamp(60px,9vw,130px);
+line-height:.9;
+margin:30px 0;
+
+}
+
+
+.hero p{
+
+font-size:20px;
+
+}
+
+
+
+button{
+
+padding:16px 40px;
+border:none;
+background:white;
+color:black;
+cursor:pointer;
+font-size:16px;
+
+}
+
+
+
+section{
+
+padding:120px 8%;
+
+}
+
+
+
+h2{
+
+font-size:clamp(40px,6vw,80px);
+margin-bottom:40px;
+
+}
+
+
+
+.text{
+
+max-width:900px;
+
+}
+
+
+.text p{
+
+font-size:25px;
+line-height:1.6;
+color:#aaa;
+
+}
+
+
+
+
+.projects{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+
+}
+
+
+.project{
+
+height:500px;
+background:#151515;
+overflow:hidden;
+position:relative;
+
+}
+
+
+.project img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+transition:.6s;
+
+}
+
+
+.project:hover img{
+
+transform:scale(1.08);
+
+}
+
+
+.project div{
+
+position:absolute;
+bottom:0;
+padding:30px;
+background:linear-gradient(transparent,#000);
+width:100%;
+
+}
+
+
+
+.services{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:40px;
+
+}
+
+
+.service{
+
+border-top:1px solid #333;
+padding-top:30px;
+
+}
+
+
+.service p{
+
+color:#aaa;
+line-height:1.6;
+
+}
+
+
+
+.contact{
+
+text-align:center;
+
+}
+
+
+
+footer{
+
+padding:50px 8%;
+border-top:1px solid #333;
+color:#aaa;
+
+}
+
+
+
+@media(max-width:900px){
+
+nav{
+display:none;
+}
+
+.projects,
+.services{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="logo">
+MAGNUM.
+</div>
+
+
+<nav>
+
+<a href="#projets">Réalisations</a>
+
+<a href="#expertise">Expertise</a>
+
+<a href="#contact">Contact</a>
+
+</nav>
+
+
+</header>
+
+
+
+
+<section class="hero">
+
+
+<div>
+
+<p>
+Promoteur immobilier de prestige
+</p>
+
+
+<h1>
+Redéfinir<br>
+l'horizon.
+</h1>
+
+
+<button>
+Découvrir
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section class="text">
+
+
+<h2>
+Créer des espaces qui traversent le temps.
+</h2>
+
+
+<p>
+MAGNUM imagine des projets immobiliers d'exception.
+Une vision basée sur l'architecture, la qualité et
+l'élégance.
+</p>
+
+
+</section>
+
+
+
+
+
+<section id="projets">
+
+
+<h2>
+Réalisations
+</h2>
+
+
+<div class="projects">
+
+
+<div class="project">
+
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+
+<div>
+
+<h3>
+Résidence SVJ
+</h3>
+
+<p>
+Luxembourg
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="project">
+
+<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
+
+<div>
+
+<h3>
+Villa Horizon
+</h3>
+
+<p>
+Projet privé
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="project">
+
+<img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d">
+
+<div>
+
+<h3>
+Maison Signature
+</h3>
+
+<p>
+Architecture premium
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section id="expertise">
+
+
+<h2>
+Notre expertise
+</h2>
+
+
+<div class="services">
+
+
+<div class="service">
+
+<h3>
+Architecture
+</h3>
+
+<p>
+Des lignes pensées avec précision.
+</p>
+
+</div>
+
+
+<div class="service">
+
+<h3>
+Développement
+</h3>
+
+<p>
+Une maîtrise complète du projet immobilier.
+</p>
+
+</div>
+
+
+<div class="service">
+
+<h3>
+Excellence
+</h3>
+
+<p>
+Une attention absolue aux détails.
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section id="contact" class="contact">
+
+
+<h2>
+Construisons votre prochain projet.
+</h2>
+
+
+<button>
+Contact
+</button>
+
+
+</section>
+
+
+
+
+
+<footer>
+
+MAGNUM.  
+<br>
+Promoteur immobilier premium
+
+</footer>
+
+
+</body>
+
+</html>
