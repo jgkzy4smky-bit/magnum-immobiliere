@@ -1,0 +1,3263 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAGNUM — Signature Real Estate</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+
+<style>
+
+
+:root{
+
+--black:#050505;
+
+--white:#F4F4F0;
+
+--yellow:#FFD600;
+
+--grey:#8b8b8b;
+
+}
+
+
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+}
+
+
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+
+
+body{
+
+background:var(--black);
+
+color:var(--white);
+
+font-family:'Montserrat',sans-serif;
+
+overflow-x:hidden;
+
+}
+
+
+
+::selection{
+
+background:var(--yellow);
+
+color:#000;
+
+}
+
+
+
+/* =====================
+   GRAIN CINEMA
+===================== */
+
+
+body::before{
+
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+opacity:.04;
+
+z-index:1000;
+
+
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+
+
+}
+
+
+
+/* =====================
+   LOADER
+===================== */
+
+
+.loader{
+
+
+position:fixed;
+
+inset:0;
+
+background:#000;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+z-index:9999;
+
+
+}
+
+
+.loader-name{
+
+
+font-size:60px;
+
+letter-spacing:25px;
+
+font-weight:700;
+
+
+}
+
+
+
+.loader-name span{
+
+color:var(--yellow);
+
+}
+
+
+
+
+/* =====================
+ NAVIGATION
+===================== */
+
+
+header{
+
+
+position:fixed;
+
+top:0;
+
+width:100%;
+
+padding:40px 8%;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+z-index:100;
+
+
+}
+
+
+
+.logo{
+
+
+font-size:34px;
+
+font-weight:700;
+
+letter-spacing:10px;
+
+
+}
+
+
+
+.logo span{
+
+color:var(--yellow);
+
+}
+
+
+
+nav{
+
+display:flex;
+
+gap:50px;
+
+}
+
+
+
+nav a{
+
+
+text-decoration:none;
+
+color:white;
+
+text-transform:uppercase;
+
+font-size:12px;
+
+letter-spacing:4px;
+
+opacity:.8;
+
+transition:.4s;
+
+
+}
+
+
+
+nav a:hover{
+
+
+color:var(--yellow);
+
+opacity:1;
+
+
+}
+
+
+
+
+
+/* =====================
+ GLOBAL
+===================== */
+
+
+section{
+
+padding:160px 8%;
+
+}
+
+
+
+.reveal{
+
+
+opacity:0;
+
+transform:translateY(80px);
+
+
+}
+
+
+
+.gold{
+
+color:var(--yellow);
+
+}
+
+
+
+.serif{
+
+
+font-family:'Cormorant Garamond';
+
+font-weight:300;
+
+
+}
+
+
+
+/* =====================
+ HERO BASE
+===================== */
+
+
+.hero{
+
+
+height:100vh;
+
+position:relative;
+
+display:flex;
+
+align-items:center;
+
+overflow:hidden;
+
+padding:0 8%;
+
+
+}
+
+
+
+.hero-image{
+
+
+position:absolute;
+
+inset:0;
+
+z-index:-2;
+
+
+background:
+
+linear-gradient(
+
+90deg,
+
+rgba(0,0,0,.9),
+
+rgba(0,0,0,.25)
+
+),
+
+
+url("https://images.unsplash.com/photo-1600607688969-a5bfcd646154")
+
+center/cover;
+
+
+}
+
+
+
+
+.hero-overlay{
+
+
+position:absolute;
+
+inset:0;
+
+background:
+
+radial-gradient(
+
+circle at 70% 50%,
+
+rgba(255,214,0,.15),
+
+transparent 30%
+
+);
+
+
+}
+
+
+
+
+.hero-content{
+
+
+max-width:1100px;
+
+}
+
+
+
+.hero-tag{
+
+
+font-size:13px;
+
+letter-spacing:8px;
+
+color:var(--yellow);
+
+margin-bottom:40px;
+
+
+}
+
+
+
+
+.hero-title{
+
+
+font-size:clamp(80px,11vw,180px);
+
+line-height:.82;
+
+font-weight:700;
+
+
+}
+
+
+
+.hero-title .serif{
+
+
+color:var(--yellow);
+
+font-style:italic;
+
+
+}
+
+
+
+.hero-text{
+
+
+margin-top:50px;
+
+font-size:24px;
+
+max-width:650px;
+
+line-height:1.6;
+
+color:#ddd;
+
+
+}
+
+
+
+
+.primary-button{
+
+
+margin-top:60px;
+
+display:inline-block;
+
+padding:22px 55px;
+
+background:var(--yellow);
+
+color:#000;
+
+text-decoration:none;
+
+font-weight:700;
+
+letter-spacing:3px;
+
+transition:.5s;
+
+
+}
+
+
+
+.primary-button:hover{
+
+
+transform:translateY(-8px);
+
+box-shadow:0 30px 80px rgba(255,214,0,.35);
+
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="loader">
+
+<div class="loader-name">
+
+MAGNUM<span>.</span>
+
+</div>
+
+</div>
+
+
+
+<header>
+
+<div class="logo">
+
+MAGNUM<span>.</span>
+
+</div>
+
+
+<nav>
+
+<a href="#vision">Vision</a>
+
+<a href="#projects">Projets</a>
+
+<a href="#contact">Contact</a>
+
+</nav>
+
+
+</header>
+
+
+
+
+
+<section class="hero">
+
+
+<div class="hero-image"></div>
+
+<div class="hero-overlay"></div>
+
+
+
+<div class="hero-content reveal">
+
+
+<div class="hero-tag">
+
+PROMOTEUR IMMOBILIER DE PRESTIGE
+
+</div>
+
+
+
+<h1 class="hero-title">
+
+Créer des
+
+<br>
+
+<span class="serif">
+
+héritages.
+
+</span>
+
+
+</h1>
+
+
+
+<p class="hero-text">
+
+Des résidences pensées comme des œuvres.
+Une architecture qui traverse le temps.
+
+</p>
+
+
+<a href="#" class="primary-button">
+
+Découvrir MAGNUM
+
+</a>
+
+
+</div>
+
+
+</section>
+
+
+<!-- SUITE PARTIE 2/6 -->
+  <!-- =====================
+ PARTIE 2/6
+ HERO CINEMATIC EXPERIENCE
+===================== -->
+
+
+<style>
+
+
+/* =====================
+ HERO CINEMA ELEMENTS
+===================== */
+
+
+.hero-image{
+
+
+transform:scale(1.18);
+
+will-change:transform;
+
+
+}
+
+
+
+.hero-image::after{
+
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,214,0,.08),
+
+transparent
+
+);
+
+
+animation:lightMove 8s infinite;
+
+
+}
+
+
+
+@keyframes lightMove{
+
+
+0%{
+
+transform:translateX(-120%);
+
+}
+
+
+50%{
+
+transform:translateX(120%);
+
+}
+
+
+100%{
+
+transform:translateX(120%);
+
+}
+
+
+}
+
+
+
+
+
+
+.hero-content{
+
+
+position:relative;
+
+
+}
+
+
+
+.hero-tag,
+.hero-title,
+.hero-text,
+.primary-button{
+
+
+will-change:transform,opacity;
+
+
+}
+
+
+
+
+
+/* =====================
+ REVEAL MASK EFFECT
+===================== */
+
+
+.mask-reveal{
+
+
+overflow:hidden;
+
+
+}
+
+
+
+.mask-reveal span{
+
+
+display:block;
+
+transform:translateY(110%);
+
+
+}
+
+
+
+
+
+
+/* =====================
+ SCROLL INDICATOR
+===================== */
+
+
+.scroll-indicator{
+
+
+position:absolute;
+
+bottom:50px;
+
+right:8%;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:20px;
+
+
+}
+
+
+
+.scroll-indicator span{
+
+
+writing-mode:vertical-rl;
+
+font-size:11px;
+
+letter-spacing:5px;
+
+color:#aaa;
+
+
+}
+
+
+
+.scroll-line{
+
+
+height:100px;
+
+width:1px;
+
+background:linear-gradient(
+
+to bottom,
+
+var(--yellow),
+
+transparent
+
+);
+
+
+animation:pulseLine 2s infinite;
+
+
+}
+
+
+
+
+@keyframes pulseLine{
+
+
+0%{
+
+transform:scaleY(0);
+
+transform-origin:top;
+
+}
+
+
+50%{
+
+transform:scaleY(1);
+
+transform-origin:top;
+
+}
+
+
+100%{
+
+transform:scaleY(0);
+
+transform-origin:bottom;
+
+}
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+ IMAGE DEPTH
+===================== */
+
+
+.hero-image{
+
+
+filter:saturate(.9);
+
+
+}
+
+
+
+
+</style>
+
+
+
+
+
+<div class="scroll-indicator">
+
+<span>
+
+SCROLL
+
+</span>
+
+<div class="scroll-line"></div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<section id="vision" class="vision">
+
+
+<div class="vision-wrapper reveal">
+
+
+
+<p class="hero-tag">
+
+NOTRE VISION
+
+</p>
+
+
+
+<h2>
+
+
+Nous créons des lieux
+
+<br>
+
+
+<span class="serif gold">
+
+qui deviennent éternels.
+
+</span>
+
+
+</h2>
+
+
+
+<p>
+
+
+Chaque projet MAGNUM commence par une idée :
+transformer un espace en une expérience.
+
+Architecture, lumière et matière sont réunies
+pour créer une identité unique.
+
+
+</p>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<style>
+
+
+
+.vision{
+
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+
+}
+
+
+
+
+
+.vision-wrapper{
+
+
+max-width:1300px;
+
+
+}
+
+
+
+.vision h2{
+
+
+font-size:clamp(60px,8vw,130px);
+
+line-height:.95;
+
+margin:50px 0;
+
+
+}
+
+
+
+.vision p:last-child{
+
+
+max-width:800px;
+
+font-size:26px;
+
+line-height:1.7;
+
+color:#999;
+
+
+}
+
+
+
+</style>
+<!-- =====================
+ PARTIE 3/6
+ PROJECTS IMMERSIVE
+===================== -->
+
+
+<section id="projects" class="projects-section">
+
+
+<div class="projects-header reveal">
+
+
+<p class="hero-tag">
+COLLECTION PRIVÉE
+</p>
+
+
+<h2>
+
+Des projets
+
+<span class="serif gold">
+
+d'exception.
+
+</span>
+
+
+</h2>
+
+
+</div>
+
+
+
+
+
+<div class="project-showcase">
+
+
+
+<article class="project">
+
+
+<div class="project-media">
+
+
+<div class="image-mask">
+
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+
+</div>
+
+
+</div>
+
+
+
+<div class="project-info">
+
+
+<span class="project-number">
+
+01
+
+</span>
+
+
+<h3>
+
+Résidence SVJ
+
+</h3>
+
+
+<p>
+
+Luxembourg
+
+</p>
+
+
+<div class="project-line"></div>
+
+
+<span class="project-type">
+
+ARCHITECTURE SIGNATURE
+
+</span>
+
+
+</div>
+
+
+
+</article>
+
+
+
+
+
+
+
+<article class="project reverse">
+
+
+<div class="project-media">
+
+
+<div class="image-mask">
+
+<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
+
+</div>
+
+
+</div>
+
+
+
+<div class="project-info">
+
+
+<span class="project-number">
+
+02
+
+</span>
+
+
+<h3>
+
+Villa Horizon
+
+</h3>
+
+
+<p>
+
+Collection privée
+
+</p>
+
+
+<div class="project-line"></div>
+
+
+<span class="project-type">
+
+DESIGN CONTEMPORAIN
+
+</span>
+
+
+</div>
+
+
+
+</article>
+
+
+
+
+
+
+
+<article class="project">
+
+
+<div class="project-media">
+
+
+<div class="image-mask">
+
+<img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d">
+
+</div>
+
+
+</div>
+
+
+
+<div class="project-info">
+
+
+<span class="project-number">
+
+03
+
+</span>
+
+
+<h3>
+
+MAGNUM Signature
+
+</h3>
+
+
+<p>
+
+Résidence premium
+
+</p>
+
+
+<div class="project-line"></div>
+
+
+<span class="project-type">
+
+HÉRITAGE ARCHITECTURAL
+
+</span>
+
+
+</div>
+
+
+
+</article>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<style>
+
+
+
+/* =====================
+ PROJECT HEADER
+===================== */
+
+
+.projects-section{
+
+
+padding-top:120px;
+
+
+}
+
+
+
+.projects-header h2{
+
+
+font-size:clamp(60px,9vw,140px);
+
+line-height:.9;
+
+margin-top:50px;
+
+
+}
+
+
+
+
+
+/* =====================
+ PROJECT STRUCTURE
+===================== */
+
+
+.project-showcase{
+
+
+margin-top:150px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:180px;
+
+
+}
+
+
+
+.project{
+
+
+display:grid;
+
+grid-template-columns:1.4fr .8fr;
+
+align-items:center;
+
+gap:80px;
+
+
+}
+
+
+
+
+.project.reverse{
+
+
+grid-template-columns:.8fr 1.4fr;
+
+
+}
+
+
+
+.project.reverse .project-media{
+
+
+order:2;
+
+
+}
+
+
+
+.project-media{
+
+
+overflow:hidden;
+
+height:750px;
+
+
+}
+
+
+
+.image-mask{
+
+
+height:100%;
+
+overflow:hidden;
+
+background:#111;
+
+
+}
+
+
+
+.image-mask img{
+
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+transform:scale(1.25);
+
+transition:transform 1.5s cubic-bezier(.2,.7,.2,1);
+
+
+}
+
+
+
+.project:hover img{
+
+
+transform:scale(1.05);
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+ PROJECT TEXT
+===================== */
+
+
+
+.project-info{
+
+
+position:relative;
+
+
+}
+
+
+
+.project-number{
+
+
+font-size:100px;
+
+font-weight:700;
+
+color:var(--yellow);
+
+opacity:.8;
+
+
+}
+
+
+
+.project-info h3{
+
+
+font-family:'Cormorant Garamond';
+
+font-size:90px;
+
+font-weight:300;
+
+line-height:.9;
+
+margin:30px 0;
+
+
+}
+
+
+
+.project-info p{
+
+
+font-size:18px;
+
+letter-spacing:5px;
+
+color:#aaa;
+
+
+}
+
+
+
+
+.project-line{
+
+
+height:1px;
+
+width:120px;
+
+background:var(--yellow);
+
+margin:35px 0;
+
+
+}
+
+
+
+.project-type{
+
+
+font-size:12px;
+
+letter-spacing:5px;
+
+color:white;
+
+
+}
+
+
+
+
+
+@media(max-width:900px){
+
+
+
+.project,
+.project.reverse{
+
+
+display:flex;
+
+flex-direction:column;
+
+
+}
+
+
+
+.project.reverse .project-media{
+
+
+order:0;
+
+
+}
+
+
+
+.project-media{
+
+
+height:450px;
+
+
+}
+
+
+
+.project-info h3{
+
+
+font-size:60px;
+
+
+}
+
+
+}
+
+
+</style>
+<!-- =====================
+ PARTIE 4/6
+ BRAND EXPERIENCE
+===================== -->
+
+
+
+<section class="manifesto">
+
+
+<div class="manifesto-inner reveal">
+
+
+
+<p class="hero-tag">
+
+L'ADN MAGNUM
+
+</p>
+
+
+
+
+<h2>
+
+
+Certains construisent
+
+<br>
+
+
+des bâtiments.
+
+
+
+<br>
+
+
+<span class="serif gold">
+
+Nous créons des signatures.
+
+</span>
+
+
+
+</h2>
+
+
+
+
+<p>
+
+
+Chaque détail raconte une histoire.
+Chaque matière possède une intention.
+Chaque espace est pensé pour laisser une empreinte.
+
+
+</p>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<section class="process">
+
+
+
+<div class="process-header reveal">
+
+
+<p class="hero-tag">
+
+NOTRE APPROCHE
+
+</p>
+
+
+
+<h2>
+
+
+Une vision en
+
+<span class="serif gold">
+
+quatre étapes.
+
+</span>
+
+
+</h2>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="process-list">
+
+
+
+<div class="process-item reveal">
+
+
+<div class="process-number">
+
+01
+
+</div>
+
+
+<div>
+
+<h3>
+
+Vision
+
+</h3>
+
+
+<p>
+
+Analyser le lieu, comprendre son potentiel
+et imaginer son futur.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="process-item reveal">
+
+
+<div class="process-number">
+
+02
+
+</div>
+
+
+<div>
+
+<h3>
+
+Conception
+
+</h3>
+
+
+<p>
+
+Créer une architecture équilibrée,
+élégante et intemporelle.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="process-item reveal">
+
+
+<div class="process-number">
+
+03
+
+</div>
+
+
+<div>
+
+<h3>
+
+Exécution
+
+</h3>
+
+
+<p>
+
+Sélectionner les meilleurs partenaires
+et maîtriser chaque détail.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="process-item reveal">
+
+
+<div class="process-number">
+
+04
+
+</div>
+
+
+<div>
+
+<h3>
+
+Héritage
+
+</h3>
+
+
+<p>
+
+Créer des lieux qui gardent leur valeur
+bien au-delà du temps.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="numbers-section">
+
+
+<div class="numbers-grid">
+
+
+
+<div class="number-box reveal">
+
+<h3 data-target="25">
+
+0
+
+</h3>
+
+<p>
+
+PROJETS SIGNATURE
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="number-box reveal">
+
+<h3 data-target="10">
+
+0
+
+</h3>
+
+<p>
+
+ANNÉES D'EXCELLENCE
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="number-box reveal">
+
+<h3 data-target="100">
+
+0
+
+</h3>
+
+<p>
+
+ENGAGEMENT QUALITÉ
+
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<style>
+
+
+/* =====================
+ MANIFESTO
+===================== */
+
+
+
+.manifesto{
+
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+
+background:
+
+radial-gradient(
+
+circle at center,
+
+rgba(255,214,0,.08),
+
+transparent 35%
+
+);
+
+
+}
+
+
+
+.manifesto-inner{
+
+
+max-width:1300px;
+
+
+}
+
+
+
+
+.manifesto h2{
+
+
+font-size:clamp(65px,9vw,150px);
+
+line-height:.9;
+
+margin:60px 0;
+
+
+}
+
+
+
+.manifesto p:last-child{
+
+
+font-size:26px;
+
+line-height:1.7;
+
+color:#999;
+
+max-width:800px;
+
+margin:auto;
+
+
+}
+
+
+
+
+
+/* =====================
+ PROCESS
+===================== */
+
+
+.process{
+
+
+background:#080808;
+
+
+}
+
+
+
+.process-header h2{
+
+
+font-size:clamp(60px,8vw,130px);
+
+margin-top:40px;
+
+
+}
+
+
+
+
+.process-list{
+
+
+margin-top:120px;
+
+
+}
+
+
+
+.process-item{
+
+
+display:grid;
+
+grid-template-columns:250px 1fr;
+
+gap:60px;
+
+padding:60px 0;
+
+border-bottom:1px solid #222;
+
+
+transition:.5s;
+
+
+}
+
+
+
+.process-item:hover{
+
+
+padding-left:40px;
+
+border-color:var(--yellow);
+
+
+}
+
+
+
+
+.process-number{
+
+
+font-size:100px;
+
+font-weight:700;
+
+color:var(--yellow);
+
+opacity:.7;
+
+
+}
+
+
+
+.process-item h3{
+
+
+font-size:45px;
+
+margin-bottom:20px;
+
+
+}
+
+
+
+.process-item p{
+
+
+font-size:22px;
+
+line-height:1.6;
+
+color:#999;
+
+max-width:700px;
+
+
+}
+
+
+
+
+
+/* =====================
+ NUMBERS
+===================== */
+
+
+.numbers-section{
+
+
+padding:140px 8%;
+
+
+}
+
+
+
+.numbers-grid{
+
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+border-top:1px solid #333;
+
+border-bottom:1px solid #333;
+
+
+}
+
+
+
+.number-box{
+
+
+padding:90px 40px;
+
+text-align:center;
+
+border-right:1px solid #333;
+
+
+}
+
+
+
+.number-box:last-child{
+
+
+border:none;
+
+
+}
+
+
+
+.number-box h3{
+
+
+font-size:110px;
+
+color:var(--yellow);
+
+
+}
+
+
+
+.number-box p{
+
+
+letter-spacing:5px;
+
+font-size:12px;
+
+color:#888;
+
+
+}
+
+
+
+
+
+
+@media(max-width:900px){
+
+
+
+.process-item{
+
+
+grid-template-columns:1fr;
+
+
+}
+
+
+
+.numbers-grid{
+
+
+grid-template-columns:1fr;
+
+
+}
+
+
+
+.number-box{
+
+
+border-right:none;
+
+border-bottom:1px solid #333;
+
+
+}
+
+
+}
+
+
+
+</style>
+<!-- =====================
+ PARTIE 5/6
+ PREMIUM FINISH
+===================== -->
+
+
+
+<section class="luxury-transition">
+
+
+<div class="luxury-glow"></div>
+
+
+<div class="luxury-content reveal">
+
+
+<p class="hero-tag">
+
+VISION FUTURE
+
+</p>
+
+
+<h2>
+
+
+L'immobilier devient
+
+<br>
+
+
+<span class="serif gold">
+
+une expérience.
+
+</span>
+
+
+</h2>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<section id="contact" class="contact-section">
+
+
+<div class="contact-wrapper reveal">
+
+
+<p class="hero-tag">
+
+CONTACT
+
+</p>
+
+
+
+
+<h2>
+
+
+Votre prochain
+
+<br>
+
+
+<span class="serif gold">
+
+chef-d'œuvre.
+
+</span>
+
+
+</h2>
+
+
+
+
+<p>
+
+
+Parlons d'un projet qui mérite
+une approche différente.
+
+
+</p>
+
+
+
+<a href="#" class="luxury-button">
+
+
+DÉMARRER UN PROJET
+
+
+</a>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<footer>
+
+
+<div class="footer-brand">
+
+MAGNUM<span>.</span>
+
+</div>
+
+
+
+<div>
+
+Luxembourg — Europe
+
+</div>
+
+
+
+<div>
+
+Immobilier d'exception
+
+</div>
+
+
+
+</footer>
+
+
+
+
+
+
+
+
+
+<style>
+
+
+/* =====================
+ LUXURY TRANSITION
+===================== */
+
+
+.luxury-transition{
+
+
+height:90vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+position:relative;
+
+overflow:hidden;
+
+
+}
+
+
+
+
+.luxury-glow{
+
+
+position:absolute;
+
+width:700px;
+
+height:700px;
+
+background:var(--yellow);
+
+filter:blur(250px);
+
+opacity:.08;
+
+
+}
+
+
+
+.luxury-content{
+
+
+text-align:center;
+
+position:relative;
+
+
+}
+
+
+
+.luxury-content h2{
+
+
+font-size:clamp(70px,10vw,160px);
+
+line-height:.9;
+
+
+}
+
+
+
+
+
+/* =====================
+ CONTACT
+===================== */
+
+
+
+.contact-section{
+
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+
+}
+
+
+
+
+
+.contact-wrapper{
+
+
+max-width:1200px;
+
+
+}
+
+
+
+
+.contact-wrapper h2{
+
+
+font-size:clamp(70px,10vw,160px);
+
+line-height:.85;
+
+margin:50px 0;
+
+
+}
+
+
+
+
+.contact-wrapper p:not(.hero-tag){
+
+
+font-size:25px;
+
+line-height:1.6;
+
+color:#999;
+
+max-width:700px;
+
+margin:auto;
+
+
+}
+
+
+
+
+
+
+.luxury-button{
+
+
+display:inline-flex;
+
+margin-top:70px;
+
+padding:25px 70px;
+
+text-decoration:none;
+
+color:white;
+
+border:1px solid var(--yellow);
+
+letter-spacing:5px;
+
+font-size:13px;
+
+position:relative;
+
+overflow:hidden;
+
+transition:.6s;
+
+
+}
+
+
+
+
+.luxury-button::before{
+
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:var(--yellow);
+
+transform:translateY(101%);
+
+transition:.6s;
+
+z-index:-1;
+
+
+}
+
+
+
+.luxury-button:hover{
+
+
+color:black;
+
+
+}
+
+
+
+.luxury-button:hover::before{
+
+
+transform:translateY(0);
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+ FOOTER
+===================== */
+
+
+
+footer{
+
+
+padding:70px 8%;
+
+border-top:1px solid #222;
+
+display:flex;
+
+justify-content:space-between;
+
+color:#777;
+
+font-size:13px;
+
+letter-spacing:3px;
+
+
+}
+
+
+
+.footer-brand{
+
+
+font-size:35px;
+
+font-weight:700;
+
+letter-spacing:10px;
+
+color:white;
+
+
+}
+
+
+
+.footer-brand span{
+
+
+color:var(--yellow);
+
+
+}
+
+
+
+
+
+/* =====================
+ FLOATING EFFECTS
+===================== */
+
+
+.hero-image,
+.project img,
+.luxury-glow{
+
+
+will-change:transform;
+
+
+}
+
+
+
+
+@media(max-width:900px){
+
+
+footer{
+
+
+display:block;
+
+text-align:center;
+
+
+}
+
+
+
+footer div{
+
+
+margin:25px 0;
+
+
+}
+
+
+}
+
+
+
+</style>
+<!-- =====================
+ PARTIE 6/6
+ FINAL ENGINE
+========================= -->
+
+
+<script>
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+
+
+
+/* =====================
+ LOADER CINEMA
+========================= */
+
+
+window.addEventListener("load",()=>{
+
+
+const tl = gsap.timeline();
+
+
+
+tl.to(".loader-name",{
+
+
+opacity:0,
+
+y:-40,
+
+scale:1.15,
+
+duration:1.2,
+
+ease:"power4.inOut"
+
+
+})
+
+
+
+.to(".loader",{
+
+
+clipPath:"polygon(0 0,100% 0,100% 0,0 0)",
+
+duration:1.4,
+
+ease:"power4.inOut"
+
+
+})
+
+
+
+.from(".hero-image",{
+
+
+scale:1.35,
+
+duration:3,
+
+ease:"power3.out"
+
+
+},"-=1")
+
+
+
+.from(".hero-tag",{
+
+
+opacity:0,
+
+y:60,
+
+duration:1
+
+
+},"-=2")
+
+
+
+.from(".hero-title",{
+
+
+opacity:0,
+
+y:100,
+
+duration:1.5,
+
+ease:"power4.out"
+
+
+},"-=1.4")
+
+
+
+.from(".hero-text",{
+
+
+opacity:0,
+
+y:60,
+
+duration:1
+
+
+},"-=1")
+
+
+
+.from(".primary-button",{
+
+
+opacity:0,
+
+y:40,
+
+duration:1
+
+
+},"-=.8")
+
+
+
+});
+
+
+
+
+
+
+
+
+
+/* =====================
+ REVEAL PREMIUM
+========================= */
+
+
+gsap.utils.toArray(".reveal").forEach((element)=>{
+
+
+gsap.to(element,{
+
+opacity:1,
+
+y:0,
+
+duration:1.4,
+
+ease:"power4.out",
+
+
+scrollTrigger:{
+
+
+trigger:element,
+
+start:"top 85%",
+
+
+}
+
+});
+
+
+});
+
+
+
+
+
+
+
+
+
+/* =====================
+ IMAGE PARALLAX
+========================= */
+
+
+
+gsap.utils.toArray(".project img").forEach(img=>{
+
+
+gsap.to(img,{
+
+
+yPercent:-12,
+
+
+ease:"none",
+
+
+scrollTrigger:{
+
+
+trigger:img,
+
+scrub:1.5
+
+
+}
+
+
+});
+
+
+});
+
+
+
+
+
+
+
+
+
+
+/* =====================
+ HERO DEPTH
+========================= */
+
+
+gsap.to(".hero-image",{
+
+
+scale:1,
+
+
+scrollTrigger:{
+
+
+trigger:".hero",
+
+start:"top top",
+
+end:"bottom top",
+
+scrub:true
+
+
+}
+
+
+});
+
+
+
+
+
+
+/* =====================
+ PROJECT IMAGE REVEAL
+========================= */
+
+
+
+gsap.utils.toArray(".image-mask").forEach(mask=>{
+
+
+gsap.from(mask,{
+
+clipPath:"inset(0 0 100% 0)",
+
+
+duration:1.8,
+
+
+ease:"power4.inOut",
+
+
+
+scrollTrigger:{
+
+
+trigger:mask,
+
+start:"top 75%"
+
+
+}
+
+
+});
+
+
+
+});
+
+
+
+
+
+
+
+/* =====================
+ COMPTEURS
+========================= */
+
+
+
+document.querySelectorAll("[data-target]").forEach(number=>{
+
+
+let target = Number(number.dataset.target);
+
+
+
+ScrollTrigger.create({
+
+
+trigger:number,
+
+
+start:"top 80%",
+
+
+once:true,
+
+
+onEnter:()=>{
+
+
+let counter={value:0};
+
+
+
+gsap.to(counter,{
+
+
+value:target,
+
+
+duration:2.5,
+
+
+ease:"power2.out",
+
+
+
+onUpdate:()=>{
+
+
+number.textContent=Math.floor(counter.value)+"+";
+
+
+}
+
+
+});
+
+
+}
+
+
+
+});
+
+
+
+});
+
+
+
+
+
+
+
+
+
+/* =====================
+ SMOOTH FLOATING EFFECT
+========================= */
+
+
+
+gsap.to(".luxury-glow",{
+
+
+x:120,
+
+y:-80,
+
+
+duration:8,
+
+
+repeat:-1,
+
+
+yoyo:true,
+
+
+ease:"sine.inOut"
+
+
+});
+
+
+
+
+
+
+
+
+/* =====================
+ MOUSE DEPTH PROJECTS
+========================= */
+
+
+document.querySelectorAll(".project").forEach(project=>{
+
+
+project.addEventListener("mousemove",(event)=>{
+
+
+const box=project.getBoundingClientRect();
+
+
+const x=event.clientX-box.left;
+
+const y=event.clientY-box.top;
+
+
+
+const rotateY=(x-box.width/2)/80;
+
+const rotateX=(box.height/2-y)/80;
+
+
+
+gsap.to(project,{
+
+rotateX,
+
+rotateY,
+
+duration:.6,
+
+ease:"power3.out"
+
+});
+
+
+});
+
+
+
+project.addEventListener("mouseleave",()=>{
+
+
+gsap.to(project,{
+
+
+rotateX:0,
+
+rotateY:0,
+
+duration:1,
+
+
+ease:"power3.out"
+
+
+});
+
+
+});
+
+
+
+});
+
+
+
+
+
+
+
+
+
+/* =====================
+ SMOOTH HEADER
+========================= */
+
+
+ScrollTrigger.create({
+
+
+start:"top -100",
+
+
+onUpdate:(self)=>{
+
+
+if(self.direction===1){
+
+
+gsap.to("header",{
+
+y:-120,
+
+duration:.4
+
+});
+
+
+}
+
+else{
+
+
+gsap.to("header",{
+
+y:0,
+
+duration:.4
+
+});
+
+
+}
+
+
+}
+
+
+
+});
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
